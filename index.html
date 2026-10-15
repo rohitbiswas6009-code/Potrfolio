@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+    <title>F&S Masonry & Concrete Specialists | Premium Masonry Services</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                screens: {
+                    'xs': '375px',
+                    'sm': '640px',
+                    'md': '768px',
+                    'lg': '1024px',
+                    'xl': '1280px',
+                    '2xl': '1536px',
+                },
+                extend: {
+                    colors: {
+                        brand: {
+                            red: '#A81C24',
+                            darkred: '#8B0000',
+                            lightred: '#C8232C',
+                            dark: '#1A1A1A',
+                            charcoal: '#2C2C2C',
+                            slate: '#333333',
+                            graybg: '#F8F9FA'
+                        }
+                    },
+                    fontFamily: {
+                        montserrat: ['Montserrat', 'sans-serif'],
+                        poppins: ['Poppins', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Force 0 border radius globally */
+        *, ::before, ::after {
+            border-radius: 0 !important;
+        }
+
+        /* Touch target sizing & device overflow protection */
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            -webkit-tap-highlight-color: transparent;
+            font-family: 'Poppins', sans-serif;
+        }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Montserrat', sans-serif; }
+
+        /* Ensure interactive touch targets are easily tappable (min 44px height) */
+        a, button, input, select, textarea {
+            touch-action: manipulation;
+        }
+
+        /* Continuous Keyframe Animations */
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(1deg); }
+        }
+        @keyframes floatReverse {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(8px) rotate(-1deg); }
+        }
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.15; transform: scale(1); }
+            50% { opacity: 0.35; transform: scale(1.08); }
+        }
+        @keyframes marquee {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
+        @keyframes logoSlide {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .animate-float-slow { animation: floatSlow 6s ease-in-out infinite; }
+        .animate-float-reverse { animation: floatReverse 7s ease-in-out infinite; }
+        .animate-pulse-glow { animation: pulseGlow 8s ease-in-out infinite; }
+        
+        .marquee-track {
+            display: flex;
+            width: 200%;
+            animation: marquee 25s linear infinite;
+        }
+        .marquee-track:hover { animation-play-state: paused; }
+
+        .logo-track {
+            display: flex;
+            width: 200%;
+            animation: logoSlide 20s linear infinite;
+        }
+        .logo-track:hover { animation-play-state: paused; }
+
+        /* Scroll Reveal Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
+        }
+        .reveal.reveal-left { transform: translateX(-30px); }
+        .reveal.reveal-right { transform: translateX(30px); }
+        .reveal.reveal-scale { transform: scale(0.94); }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0) translateX(0) scale(1);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal { transition: none !important; opacity: 1 !important; transform: none !important; }
+            .animate-float-slow, .animate-float-reverse, .animate-pulse-glow, .marquee-track, .logo-track { animation: none !important; }
+        }
+
+        /* Mobile Scroll Snap Container Helpers */
+        .snap-x-mandatory {
+            scroll-snap-type: x mandatory;
+        }
+        .snap-start-item {
+            scroll-snap-align: start;
+        }
+
+        /* Scrollbar hiding utilities */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        .active-filter {
+            background-color: #A81C24 !important;
+            color: white !important;
+            border-color: #A81C24 !important;
+        }
+    </style>
+</head>
+<body class="bg-brand-graybg text-gray-800 antialiased selection:bg-brand-red selection:text-white relative">
+
+    <!-- Top Contact Bar (Responsive Wrap & Stack) -->
+    <div class="bg-brand-dark text-white text-xs py-2.5 px-3 sm:px-6 border-b border-gray-800 z-50 relative">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-y-2 gap-x-4">
+            <div class="flex flex-wrap items-center gap-x-4 sm:gap-x-6 gap-y-1 mx-auto sm:mx-0 justify-center">
+                <a href="tel:+1 650-200-8116" class="flex items-center gap-1.5 hover:text-brand-red transition min-h-[32px] font-medium">
+                    <i class="fa-solid fa-phone text-brand-red text-xs"></i> +1 650-200-8116
+                </a>
+                <a href="mailto:panamenolandscapllc@gmail.com" class="hidden xs:flex items-center gap-1.5 hover:text-brand-red transition min-h-[32px] font-medium">
+                    <i class="fa-solid fa-envelope text-brand-red text-xs"></i> panamenolandscapllc@gmail.com
+                </a>
+                <span class="hidden md:flex items-center gap-1.5 text-gray-400">
+                    <i class="fa-regular fa-clock text-brand-red text-xs"></i> Mon - Sat: 7:00 AM - 6:00 PM
+                </span>
+            </div>
+            <div class="flex items-center justify-between w-full sm:w-auto gap-4">
+                <span class="text-[11px] text-gray-400 hidden lg:inline">Licensed & Fully Insured Contractor</span>
+                <div class="flex items-center gap-3.5 mx-auto sm:mx-0">
+                    <a href="#" aria-label="Facebook" class="hover:text-brand-red transition p-1"><i class="fa-brands fa-facebook-f text-xs"></i></a>
+                    <a href="#" aria-label="Instagram" class="hover:text-brand-red transition p-1"><i class="fa-brands fa-instagram text-xs"></i></a>
+                    <a href="#" aria-label="LinkedIn" class="hover:text-brand-red transition p-1"><i class="fa-brands fa-linkedin-in text-xs"></i></a>
+                    <a href="#" aria-label="Google" class="hover:text-brand-red transition p-1"><i class="fa-brands fa-google text-xs"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation Header -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16 sm:h-20">
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-2.5 sm:gap-3 group">
+<a href="#" class="flex items-center group">
+    <img 
+        src="logo.png" 
+        alt="PANAMENO Landscaping & Maintenance" 
+        class="h-10 sm:h-14 md:h-16 w-auto object-contain transition-transform duration-200 group-hover:scale-105"
+    />
+</a>
+                    <div>
+                        <span class="block font-extrabold text-base sm:text-xl md:text-4xl tracking-tight text-brand-dark leading-none">Panameno</span>
+                        <span class="text-[10px] sm:text-xs font-semibold text-brand-red tracking-widest uppercase">landscape & maintenance</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden lg:flex items-center gap-6 xl:gap-8 font-semibold text-xs xl:text-sm tracking-wide text-brand-dark">
+                    <a href="#home" class="hover:text-brand-red transition py-2 border-b-2 border-brand-red">HOME</a>
+                    <a href="#process" class="hover:text-brand-red transition py-2 border-b-2 border-transparent hover:border-brand-red">OUR PROCESS</a>
+                    <a href="#services" class="hover:text-brand-red transition py-2 border-b-2 border-transparent hover:border-brand-red">SERVICES</a>
+                    <a href="#portfolio" class="hover:text-brand-red transition py-2 border-b-2 border-transparent hover:border-brand-red">PORTFOLIO</a>
+                    <a href="#faq" class="hover:text-brand-red transition py-2 border-b-2 border-transparent hover:border-brand-red">FAQ</a>
+                    <a href="#testimonials" class="hover:text-brand-red transition py-2 border-b-2 border-transparent hover:border-brand-red">REVIEWS</a>
+                    <a href="#contact" class="hover:text-brand-red transition py-2 border-b-2 border-transparent hover:border-brand-red">CONTACT</a>
+                </nav>
+
+                <!-- Desktop Header CTA Button -->
+                <div class="hidden sm:flex items-center gap-3">
+                    <a href="#contact" class="bg-brand-red hover:bg-brand-darkred text-white font-bold py-2.5 px-5 sm:py-3 sm:px-6 shadow-md hover:shadow-xl transition duration-300 transform hover:-translate-y-0.5 flex items-center gap-2 text-xs sm:text-sm min-h-[44px]">
+                        <span>Get A Quote</span>
+                        <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </a>
+                </div>
+
+                <!-- Mobile Hamburger Menu Button -->
+                <button id="mobile-menu-btn" aria-label="Toggle Navigation Menu" class="lg:hidden text-brand-dark p-2.5 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-brand-red transition min-h-[44px] min-w-[44px] flex items-center justify-center">
+                    <i id="menu-icon" class="fa-solid fa-bars text-xl sm:text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer Navigation -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-brand-dark/98 backdrop-blur-lg text-white border-t border-gray-800 px-4 pt-4 pb-8 space-y-3 shadow-2xl transition-all duration-300">
+            <nav class="flex flex-col space-y-2">
+                <a href="#home" class="mobile-link block px-4 py-3 text-sm font-semibold hover:bg-brand-red transition flex items-center justify-between">
+                    <span>Home</span> <i class="fa-solid fa-chevron-right text-xs opacity-60"></i>
+                </a>
+                <a href="#process" class="mobile-link block px-4 py-3 text-sm font-semibold hover:bg-brand-red transition flex items-center justify-between">
+                    <span>Our Process</span> <i class="fa-solid fa-chevron-right text-xs opacity-60"></i>
+                </a>
+                <a href="#services" class="mobile-link block px-4 py-3 text-sm font-semibold hover:bg-brand-red transition flex items-center justify-between">
+                    <span>Services</span> <i class="fa-solid fa-chevron-right text-xs opacity-60"></i>
+                </a>
+                <a href="#portfolio" class="mobile-link block px-4 py-3 text-sm font-semibold hover:bg-brand-red transition flex items-center justify-between">
+                    <span>Portfolio</span> <i class="fa-solid fa-chevron-right text-xs opacity-60"></i>
+                </a>
+                <a href="#faq" class="mobile-link block px-4 py-3 text-sm font-semibold hover:bg-brand-red transition flex items-center justify-between">
+                    <span>FAQ</span> <i class="fa-solid fa-chevron-right text-xs opacity-60"></i>
+                </a>
+                <a href="#testimonials" class="mobile-link block px-4 py-3 text-sm font-semibold hover:bg-brand-red transition flex items-center justify-between">
+                    <span>Reviews</span> <i class="fa-solid fa-chevron-right text-xs opacity-60"></i>
+                </a>
+                <a href="#contact" class="mobile-link block px-4 py-3 text-sm font-semibold hover:bg-brand-red transition flex items-center justify-between">
+                    <span>Contact</span> <i class="fa-solid fa-chevron-right text-xs opacity-60"></i>
+                </a>
+            </nav>
+
+            <div class="pt-4 border-t border-gray-800 grid grid-cols-2 gap-3">
+                <a href="tel:18005550199" class="mobile-link flex items-center justify-center gap-2 bg-brand-charcoal text-white font-bold py-3 px-4 text-xs uppercase border border-gray-700">
+                    <i class="fa-solid fa-phone text-brand-red"></i> Call Dispatch
+                </a>
+                <a href="#contact" class="mobile-link flex items-center justify-center gap-2 bg-brand-red text-white font-bold py-3 px-4 text-xs uppercase shadow-lg">
+                    <span>Request Quote</span> <i class="fa-solid fa-arrow-right text-xs"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative bg-brand-dark text-white py-12 xs:py-16 sm:py-24 lg:py-32 overflow-hidden">
+        <!-- Ambient Glowing Orbs -->
+        <div class="absolute top-5 left-5 w-64 xs:w-80 sm:w-96 h-64 xs:h-80 sm:h-96 bg-brand-red filter blur-[90px] sm:blur-[120px] animate-pulse-glow pointer-events-none"></div>
+        <div class="absolute bottom-5 right-5 w-56 xs:w-72 sm:w-80 h-56 xs:h-72 sm:h-80 bg-red-950 filter blur-[80px] sm:blur-[100px] animate-pulse-glow pointer-events-none" style="animation-delay: 3s;"></div>
+
+        <!-- Background Image with Dark Gradient -->
+        <div class="absolute inset-0 z-0 opacity-20 sm:opacity-25 bg-cover bg-center" style="background-image: url('https://images.unsplash.com/photo-1541888946425-d0fbb186a5b7?auto=format&fit=crop&w=1920&q=80');"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-brand-dark via-brand-dark/95 lg:via-brand-dark/90 to-transparent z-0"></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                
+                <div class="lg:col-span-7 space-y-4 sm:space-y-6 text-center lg:text-left reveal reveal-left">
+                    <div class="inline-flex items-center gap-2 bg-brand-red/20 border border-brand-red/50 text-brand-red px-3.5 py-1.5 font-semibold text-[11px] xs:text-xs sm:text-sm uppercase tracking-wider">
+                        <i class="fa-solid fa-award"></i> Commercial & Residential Masonry
+                    </div>
+                    <h1 class="text-2xl xs:text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight uppercase">
+                        Concrete <span class="text-brand-red">Specialists</span> & Structural Masonry
+                    </h1>
+                    <p class="text-gray-300 text-xs xs:text-sm sm:text-base lg:text-lg max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        Delivering exceptional craftsmanship in structural concrete, custom brickwork, stone retaining walls, and foundation repairs for over 30 years.
+                    </p>
+                    <div class="flex flex-col xs:flex-row gap-3 xs:gap-4 pt-2 justify-center lg:justify-start">
+                        <a href="#services" class="bg-brand-red hover:bg-brand-darkred text-white font-bold py-3.5 px-6 sm:py-4 sm:px-8 shadow-lg text-center transition duration-300 transform hover:-translate-y-0.5 min-h-[48px] flex items-center justify-center text-xs sm:text-sm uppercase tracking-wider">
+                            Our Services
+                        </a>
+                        <a href="#contact" class="bg-transparent hover:bg-white hover:text-brand-dark text-white font-bold py-3.5 px-6 sm:py-4 sm:px-8 border-2 border-white/80 hover:border-white text-center transition duration-300 min-h-[48px] flex items-center justify-center text-xs sm:text-sm uppercase tracking-wider">
+                            Free Estimate
+                        </a>
+                    </div>
+                    
+                    <!-- Quick Badges Grid -->
+                    <div class="pt-6 sm:pt-8 border-t border-gray-800 grid grid-cols-3 gap-2 sm:gap-4 text-center">
+                        <div class="p-2 bg-brand-charcoal/30 lg:bg-transparent border lg:border-none border-gray-800">
+                            <span class="block text-lg xs:text-xl sm:text-3xl font-black text-brand-red">30+</span>
+                            <span class="text-[10px] sm:text-xs text-gray-400 font-medium uppercase">Years Exp.</span>
+                        </div>
+                        <div class="p-2 bg-brand-charcoal/30 lg:bg-transparent border lg:border-none border-gray-800">
+                            <span class="block text-lg xs:text-xl sm:text-3xl font-black text-white">100%</span>
+                            <span class="text-[10px] sm:text-xs text-gray-400 font-medium uppercase">Guaranteed</span>
+                        </div>
+                        <div class="p-2 bg-brand-charcoal/30 lg:bg-transparent border lg:border-none border-gray-800">
+                            <span class="block text-lg xs:text-xl sm:text-3xl font-black text-brand-red">1.5K+</span>
+                            <span class="text-[10px] sm:text-xs text-gray-400 font-medium uppercase">Projects</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Contact Card & Floating Tags -->
+                <div class="lg:col-span-5 relative mt-4 lg:mt-0 reveal reveal-right delay-200">
+                    
+
+
+                    <!-- Hero Form Container -->
+                    <div class="bg-brand-charcoal/90 backdrop-blur border border-gray-700 p-5 sm:p-8 shadow-2xl relative overflow-hidden">
+                        <h3 class="text-xl sm:text-2xl font-bold text-white mb-1">Need Urgent Concrete Work?</h3>
+                        <p class="text-gray-400 text-xs sm:text-sm mb-5">Contact dispatch for immediate site evaluation & repair quotes.</p>
+                        
+                        <form id="hero-quick-form" class="space-y-3.5">
+                            <div>
+                                <input type="text" placeholder="Your Full Name *" required class="w-full bg-brand-dark text-white border border-gray-700 px-3.5 py-3 text-xs sm:text-sm focus:outline-none focus:border-brand-red transition min-h-[44px]">
+                            </div>
+                            <div>
+                                <input type="tel" placeholder="Phone Number *" required class="w-full bg-brand-dark text-white border border-gray-700 px-3.5 py-3 text-xs sm:text-sm focus:outline-none focus:border-brand-red transition min-h-[44px]">
+                            </div>
+                            <div>
+                                <select required class="w-full bg-brand-dark text-white border border-gray-700 px-3.5 py-3 text-xs sm:text-sm focus:outline-none focus:border-brand-red transition min-h-[44px]">
+                                    <option value="" disabled selected>Select Service Needed *</option>
+                                    <option value="concrete">Concrete Paving / Slab</option>
+                                    <option value="brick">Brick Masonry</option>
+                                    <option value="retaining">Retaining Walls</option>
+                                    <option value="foundation">Foundation Repair</option>
+                                    <option value="patio">Patio & Hardscaping</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="w-full bg-brand-red hover:bg-brand-darkred text-white font-bold py-3.5 px-4 shadow-md transition duration-300 uppercase tracking-wider text-xs sm:text-sm min-h-[48px] flex items-center justify-center gap-2">
+                                <span>Request Quick Call</span>
+                                <i class="fa-solid fa-phone-volume text-xs"></i>
+                            </button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Infinite Continuous Marquee Banner -->
+    <div class="bg-brand-red text-white py-2.5 sm:py-3 overflow-hidden shadow-inner border-y border-red-700">
+        <div class="marquee-track font-black text-xs sm:text-sm uppercase tracking-widest flex items-center whitespace-nowrap">
+            <span class="mx-4 sm:mx-6 flex items-center"><i class="fa-solid fa-square-full text-[6px] sm:text-[8px] mr-3 text-white/60"></i> CONCRETE SPECIALISTS</span>
+            <span class="mx-4 sm:mx-6 flex items-center"><i class="fa-solid fa-square-full text-[6px] sm:text-[8px] mr-3 text-white/60"></i> STRUCTURAL MASONRY</span>
+            <span class="mx-4 sm:mx-6 flex items-center"><i class="fa-solid fa-square-full text-[6px] sm:text-[8px] mr-3 text-white/60"></i> RESIDENTIAL & COMMERCIAL</span>
+            <span class="mx-4 sm:mx-6 flex items-center"><i class="fa-solid fa-square-full text-[6px] sm:text-[8px] mr-3 text-white/60"></i> LICENSED & FULLY INSURED</span>
+            <span class="mx-4 sm:mx-6 flex items-center"><i class="fa-solid fa-square-full text-[6px] sm:text-[8px] mr-3 text-white/60"></i> EXCELLENCE IN CONSTRUCTION</span>
+            
+            <!-- Duplicated sequence for loop -->
+            <span class="mx-4 sm:mx-6 flex items-center"><i class="fa-solid fa-square-full text-[6px] sm:text-[8px] mr-3 text-white/60"></i> CONCRETE SPECIALISTS</span>
+            <span class="mx-4 sm:mx-6 flex items-center"><i class="fa-solid fa-square-full text-[6px] sm:text-[8px] mr-3 text-white/60"></i> STRUCTURAL MASONRY</span>
+            <span class="mx-4 sm:mx-6 flex items-center"><i class="fa-solid fa-square-full text-[6px] sm:text-[8px] mr-3 text-white/60"></i> RESIDENTIAL & COMMERCIAL</span>
+            <span class="mx-4 sm:mx-6 flex items-center"><i class="fa-solid fa-square-full text-[6px] sm:text-[8px] mr-3 text-white/60"></i> LICENSED & FULLY INSURED</span>
+            <span class="mx-4 sm:mx-6 flex items-center"><i class="fa-solid fa-square-full text-[6px] sm:text-[8px] mr-3 text-white/60"></i> EXCELLENCE IN CONSTRUCTION</span>
+        </div>
+    </div>
+
+    <!-- 3-Step Process Section -->
+    <section id="process" class="py-12 sm:py-20 bg-white border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-16 reveal">
+                <span class="text-brand-red font-bold text-xs sm:text-sm tracking-widest uppercase">Streamlined Workflow</span>
+                <h2 class="text-2xl xs:text-3xl sm:text-4xl font-extrabold text-brand-dark uppercase tracking-tight mt-1">
+                    Simple Steps From <span class="text-brand-red">First Call</span> To Walkthrough
+                </h2>
+                <div class="w-16 sm:w-20 h-1 bg-brand-red mx-auto mt-3"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+                <!-- Step 01 -->
+                <div class="bg-brand-red text-white p-6 sm:p-8 shadow-lg relative group hover:shadow-2xl transition duration-300 reveal reveal-scale delay-100">
+                    <div class="flex items-center justify-between mb-4 sm:mb-6">
+                        <div class="w-12 h-12 sm:w-14 sm:h-14 bg-white/10 flex items-center justify-center text-xl sm:text-2xl font-bold">
+                            <i class="fa-solid fa-phone-volume"></i>
+                        </div>
+                        <span class="text-3xl sm:text-4xl font-black text-white/30 group-hover:text-white/50 transition">01</span>
+                    </div>
+                    <h3 class="text-lg sm:text-xl font-bold mb-2">Initial Consultation</h3>
+                    <p class="text-white/80 text-xs sm:text-sm leading-relaxed">
+                        Reach out to our expert team. We discuss your architectural vision, project parameters, budget limits, and timeline.
+                    </p>
+                </div>
+
+                <!-- Step 02 -->
+                <div class="bg-brand-dark text-white p-6 sm:p-8 shadow-lg relative group hover:shadow-2xl transition duration-300 reveal reveal-scale delay-200">
+                    <div class="flex items-center justify-between mb-4 sm:mb-6">
+                        <div class="w-12 h-12 sm:w-14 sm:h-14 bg-white/10 flex items-center justify-center text-xl sm:text-2xl font-bold text-brand-red">
+                            <i class="fa-solid fa-clipboard-list"></i>
+                        </div>
+                        <span class="text-3xl sm:text-4xl font-black text-white/20 group-hover:text-white/40 transition">02</span>
+                    </div>
+                    <h3 class="text-lg sm:text-xl font-bold mb-2">Estimating & Planning</h3>
+                    <p class="text-gray-400 text-xs sm:text-sm leading-relaxed">
+                        We perform an on-site evaluation, take precise measurements, present detailed material samples, and provide a transparent quote.
+                    </p>
+                </div>
+
+                <!-- Step 03 -->
+                <div class="bg-brand-red text-white p-6 sm:p-8 shadow-lg relative group hover:shadow-2xl transition duration-300 reveal reveal-scale delay-300">
+                    <div class="flex items-center justify-between mb-4 sm:mb-6">
+                        <div class="w-12 h-12 sm:w-14 sm:h-14 bg-white/10 flex items-center justify-center text-xl sm:text-2xl font-bold">
+                            <i class="fa-solid fa-trowel-bricks"></i>
+                        </div>
+                        <span class="text-3xl sm:text-4xl font-black text-white/30 group-hover:text-white/50 transition">03</span>
+                    </div>
+                    <h3 class="text-lg sm:text-xl font-bold mb-2">Project Execution</h3>
+                    <p class="text-white/80 text-xs sm:text-sm leading-relaxed">
+                        Our master masons execute the build with structural rigor, adherence to engineering specs, clean job site standards, and a final inspection.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section (Touch Swipeable Horizontal Scroll on Mobile, Grid on Desktop) -->
+    <section id="services" class="py-12 sm:py-20 bg-brand-graybg relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 reveal">
+                <div>
+                    <span class="text-brand-red font-bold text-xs sm:text-sm tracking-widest uppercase">Expert Workmanship</span>
+                    <h2 class="text-2xl xs:text-3xl sm:text-4xl font-extrabold text-brand-dark uppercase tracking-tight mt-1">
+                        Explore Our Core Services
+                    </h2>
+                </div>
+                <p class="text-gray-600 max-w-md mt-2 md:mt-0 text-xs sm:text-sm leading-relaxed">
+                    From heavy-duty commercial concrete foundations to artistic residential brickwork, we deliver top-tier structural masonry.
+                </p>
+            </div>
+
+            <!-- Touch Indicator for Mobile -->
+            <div class="flex items-center gap-2 text-xs text-gray-500 mb-3 sm:hidden">
+                <i class="fa-solid fa-hand-pointer text-brand-red animate-pulse"></i>
+                <span>Swipe horizontally to view all services</span>
+            </div>
+
+            <!-- Responsive Cards Grid / Scroll Snap Container -->
+            <div class="flex sm:grid overflow-x-auto sm:overflow-visible snap-x-mandatory sm:snap-none gap-4 sm:gap-6 lg:gap-8 pb-4 sm:pb-0 no-scrollbar sm:grid-cols-2 lg:grid-cols-3">
+                
+                <!-- Service 1 -->
+                <div class="min-w-[82vw] xs:min-w-[280px] sm:min-w-0 snap-start-item bg-white shadow-md overflow-hidden group hover:shadow-2xl transition duration-300 border border-gray-100 flex flex-col justify-between reveal delay-100">
+                    <div>
+                        <div class="relative h-48 sm:h-56 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1578885136359-16c8bd4d3a8e?auto=format&fit=crop&w=800&q=80" alt="Concrete Paving" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                            <div class="absolute top-3 right-3 bg-brand-red text-white text-[10px] font-bold px-2.5 py-1 uppercase tracking-wider">Concrete</div>
+                        </div>
+                        <div class="p-5 sm:p-6">
+                            <h3 class="text-lg sm:text-xl font-bold text-brand-dark mb-2 group-hover:text-brand-red transition">Concrete Paving & Pouring</h3>
+                            <p class="text-gray-600 text-xs sm:text-sm mb-4 leading-relaxed">
+                                High-strength commercial and residential concrete driveways, parking pads, foundations, and reinforced concrete slab solutions.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-5 sm:p-6 pt-0">
+                        <a href="#contact" class="inline-flex items-center gap-2 text-brand-red font-bold text-xs sm:text-sm hover:gap-3 transition-all min-h-[40px]">
+                            <span>Request Estimate</span> <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="min-w-[82vw] xs:min-w-[280px] sm:min-w-0 snap-start-item bg-white shadow-md overflow-hidden group hover:shadow-2xl transition duration-300 border border-gray-100 flex flex-col justify-between reveal delay-200">
+                    <div>
+                        <div class="relative h-48 sm:h-56 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1590069261209-f8e9b8642343?auto=format&fit=crop&w=800&q=80" alt="Retaining Walls" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                            <div class="absolute top-3 right-3 bg-brand-red text-white text-[10px] font-bold px-2.5 py-1 uppercase tracking-wider">Stone & Block</div>
+                        </div>
+                        <div class="p-5 sm:p-6">
+                            <h3 class="text-lg sm:text-xl font-bold text-brand-dark mb-2 group-hover:text-brand-red transition">Retaining Walls & Terracing</h3>
+                            <p class="text-gray-600 text-xs sm:text-sm mb-4 leading-relaxed">
+                                Engineered segmental block walls and natural stone retaining barriers designed for optimal soil retention and structural aesthetics.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-5 sm:p-6 pt-0">
+                        <a href="#contact" class="inline-flex items-center gap-2 text-brand-red font-bold text-xs sm:text-sm hover:gap-3 transition-all min-h-[40px]">
+                            <span>Request Estimate</span> <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="min-w-[82vw] xs:min-w-[280px] sm:min-w-0 snap-start-item bg-white shadow-md overflow-hidden group hover:shadow-2xl transition duration-300 border border-gray-100 flex flex-col justify-between reveal delay-300">
+                    <div>
+                        <div class="relative h-48 sm:h-56 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1584463688482-96582531a31c?auto=format&fit=crop&w=800&q=80" alt="Brick Masonry" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                            <div class="absolute top-3 right-3 bg-brand-red text-white text-[10px] font-bold px-2.5 py-1 uppercase tracking-wider">Brickwork</div>
+                        </div>
+                        <div class="p-5 sm:p-6">
+                            <h3 class="text-lg sm:text-xl font-bold text-brand-dark mb-2 group-hover:text-brand-red transition">Custom Brick Masonry</h3>
+                            <p class="text-gray-600 text-xs sm:text-sm mb-4 leading-relaxed">
+                                Precision brick installation, tuckpointing, mortar restoration, chimney rebuilds, and exterior brick veneer styling.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-5 sm:p-6 pt-0">
+                        <a href="#contact" class="inline-flex items-center gap-2 text-brand-red font-bold text-xs sm:text-sm hover:gap-3 transition-all min-h-[40px]">
+                            <span>Request Estimate</span> <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience & Interactive Stats Counter -->
+    <section class="py-12 sm:py-20 bg-brand-dark text-white relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                
+                <!-- Left Visual Image Banner -->
+                <div class="lg:col-span-6 relative reveal reveal-left">
+                    <div class="relative overflow-hidden shadow-2xl border-2 sm:border-4 border-brand-charcoal">
+                        <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&w=1000&q=80" alt="Concrete Pouring Work" class="w-full h-64 xs:h-80 sm:h-96 object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-brand-dark/95 via-transparent to-transparent"></div>
+                        <div class="absolute bottom-4 sm:bottom-6 left-4 sm:left-6 right-4 sm:right-6">
+                            <span class="bg-brand-red text-white text-[10px] sm:text-xs font-bold px-2.5 py-1 uppercase">Real Craftsmanship</span>
+                            <h3 class="text-lg sm:text-2xl font-extrabold text-white mt-1.5">Precision In Every Structural Pour</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Responsive Counter Grid (1 col mobile -> 2 cols tablet -> 2 cols desktop) -->
+                <div class="lg:col-span-6 space-y-6 sm:space-y-8 reveal reveal-right delay-200" id="stats-section">
+                    <div>
+                        <span class="text-brand-red font-bold text-xs sm:text-sm tracking-widest uppercase">Structural Masonry For Every Scale</span>
+                        <h2 class="text-2xl xs:text-3xl sm:text-4xl font-extrabold text-white uppercase tracking-tight mt-1">
+                            Built To Last, Designed For Impact
+                        </h2>
+                        <p class="text-gray-400 text-xs sm:text-sm mt-3 leading-relaxed">
+                            We pride ourselves on engineering precision, safety compliance, and high structural integrity across every residential and commercial contract.
+                        </p>
+                    </div>
+
+                    <!-- Responsive Counter Items Grid -->
+                    <div class="grid grid-cols-2 gap-3 sm:gap-6 pt-2 sm:pt-4 border-t border-gray-800">
+                        <div class="bg-brand-charcoal/80 p-4 sm:p-6 border border-gray-800">
+                            <div class="text-2xl xs:text-3xl sm:text-4xl font-extrabold text-brand-red mb-0.5"><span class="counter" data-target="1500">0</span>+</div>
+                            <div class="text-xs sm:text-sm font-semibold text-white">Completed Projects</div>
+                            <div class="text-[10px] sm:text-xs text-gray-400 mt-0.5">Residential & Commercial</div>
+                        </div>
+                        <div class="bg-brand-charcoal/80 p-4 sm:p-6 border border-gray-800">
+                            <div class="text-2xl xs:text-3xl sm:text-4xl font-extrabold text-white mb-0.5"><span class="counter" data-target="99">0</span>%</div>
+                            <div class="text-xs sm:text-sm font-semibold text-white">Client Approval Rate</div>
+                            <div class="text-[10px] sm:text-xs text-gray-400 mt-0.5">Verified Client Reviews</div>
+                        </div>
+                        <div class="bg-brand-charcoal/80 p-4 sm:p-6 border border-gray-800">
+                            <div class="text-2xl xs:text-3xl sm:text-4xl font-extrabold text-white mb-0.5"><span class="counter" data-target="45">0</span>+</div>
+                            <div class="text-xs sm:text-sm font-semibold text-white">Master Masons</div>
+                            <div class="text-[10px] sm:text-xs text-gray-400 mt-0.5">Certified Crew On Staff</div>
+                        </div>
+                        <div class="bg-brand-charcoal/80 p-4 sm:p-6 border border-gray-800">
+                            <div class="text-2xl xs:text-3xl sm:text-4xl font-extrabold text-brand-red mb-0.5"><span class="counter" data-target="30">0</span>+</div>
+                            <div class="text-xs sm:text-sm font-semibold text-white">Years Active</div>
+                            <div class="text-[10px] sm:text-xs text-gray-400 mt-0.5">Continuous Operation</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Gallery & Category Filters -->
+    <section id="portfolio" class="py-12 sm:py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-8 sm:mb-10 reveal">
+                <span class="text-brand-red font-bold text-xs sm:text-sm tracking-widest uppercase">Our Recent Work</span>
+                <h2 class="text-2xl xs:text-3xl sm:text-4xl font-extrabold text-brand-dark uppercase tracking-tight mt-1">
+                    Featured Project Gallery
+                </h2>
+                <div class="w-16 sm:w-20 h-1 bg-brand-red mx-auto mt-3"></div>
+            </div>
+
+            <!-- Touch Scrollable Category Filters -->
+            <div class="flex items-center justify-start sm:justify-center gap-2 mb-8 overflow-x-auto pb-3 no-scrollbar reveal">
+                <button class="filter-btn active-filter px-4 py-2 sm:px-5 sm:py-2.5 font-bold text-xs uppercase transition border border-gray-200 whitespace-nowrap min-h-[40px]" data-filter="all">All Projects</button>
+                <button class="filter-btn bg-gray-100 text-gray-700 hover:bg-brand-red hover:text-white px-4 py-2 sm:px-5 sm:py-2.5 font-bold text-xs uppercase transition border border-gray-200 whitespace-nowrap min-h-[40px]" data-filter="concrete">Concrete</button>
+                <button class="filter-btn bg-gray-100 text-gray-700 hover:bg-brand-red hover:text-white px-4 py-2 sm:px-5 sm:py-2.5 font-bold text-xs uppercase transition border border-gray-200 whitespace-nowrap min-h-[40px]" data-filter="stone">Stone & Walls</button>
+                <button class="filter-btn bg-gray-100 text-gray-700 hover:bg-brand-red hover:text-white px-4 py-2 sm:px-5 sm:py-2.5 font-bold text-xs uppercase transition border border-gray-200 whitespace-nowrap min-h-[40px]" data-filter="brick">Brickwork</button>
+                <button class="filter-btn bg-gray-100 text-gray-700 hover:bg-brand-red hover:text-white px-4 py-2 sm:px-5 sm:py-2.5 font-bold text-xs uppercase transition border border-gray-200 whitespace-nowrap min-h-[40px]" data-filter="patio">Patios</button>
+            </div>
+
+            <!-- Responsive Gallery Grid -->
+            <div id="portfolio-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+                <!-- Project Item 1 -->
+                <div class="portfolio-item concrete bg-white overflow-hidden shadow-sm hover:shadow-xl transition duration-300 border border-gray-200 group reveal delay-100">
+                    <div class="relative overflow-hidden h-52 sm:h-60">
+                        <img src="https://images.unsplash.com/photo-1541888946425-d0fbb186a5b7?auto=format&fit=crop&w=600&q=80" alt="Stamped Concrete Driveway" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        <div class="absolute inset-0 bg-brand-dark/70 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center p-4">
+                            <span class="text-white bg-brand-red px-3 py-1.5 font-bold text-xs uppercase text-center">Stamped Concrete Driveway</span>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <span class="text-[10px] font-bold text-brand-red uppercase">Concrete</span>
+                        <h4 class="font-bold text-brand-dark text-sm sm:text-base mt-0.5">Custom Stamped Driveway</h4>
+                        <p class="text-xs text-gray-500 mt-0.5">High-durability decorative finish.</p>
+                    </div>
+                </div>
+
+                <!-- Project Item 2 -->
+                <div class="portfolio-item stone bg-white overflow-hidden shadow-sm hover:shadow-xl transition duration-300 border border-gray-200 group reveal delay-200">
+                    <div class="relative overflow-hidden h-52 sm:h-60">
+                        <img src="https://images.unsplash.com/photo-1590069261209-f8e9b8642343?auto=format&fit=crop&w=600&q=80" alt="Natural Stone Retaining Wall" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        <div class="absolute inset-0 bg-brand-dark/70 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center p-4">
+                            <span class="text-white bg-brand-red px-3 py-1.5 font-bold text-xs uppercase text-center">Retaining Wall</span>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <span class="text-[10px] font-bold text-brand-red uppercase">Stone & Walls</span>
+                        <h4 class="font-bold text-brand-dark text-sm sm:text-base mt-0.5">Terraced Stone Wall</h4>
+                        <p class="text-xs text-gray-500 mt-0.5">Engineered soil retention system.</p>
+                    </div>
+                </div>
+
+                <!-- Project Item 3 -->
+                <div class="portfolio-item brick bg-white overflow-hidden shadow-sm hover:shadow-xl transition duration-300 border border-gray-200 group reveal delay-300">
+                    <div class="relative overflow-hidden h-52 sm:h-60">
+                        <img src="https://images.unsplash.com/photo-1584463688482-96582531a31c?auto=format&fit=crop&w=600&q=80" alt="Commercial Brick Facade" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        <div class="absolute inset-0 bg-brand-dark/70 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center p-4">
+                            <span class="text-white bg-brand-red px-3 py-1.5 font-bold text-xs uppercase text-center">Brick Facade</span>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <span class="text-[10px] font-bold text-brand-red uppercase">Brickwork</span>
+                        <h4 class="font-bold text-brand-dark text-sm sm:text-base mt-0.5">Commercial Brick Veneer</h4>
+                        <p class="text-xs text-gray-500 mt-0.5">Precision mortar joints & layout.</p>
+                    </div>
+                </div>
+
+                <!-- Project Item 4 -->
+                <div class="portfolio-item patio bg-white overflow-hidden shadow-sm hover:shadow-xl transition duration-300 border border-gray-200 group reveal delay-400">
+                    <div class="relative overflow-hidden h-52 sm:h-60">
+                        <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=600&q=80" alt="Paver Patio & Outdoor Kitchen" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        <div class="absolute inset-0 bg-brand-dark/70 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center p-4">
+                            <span class="text-white bg-brand-red px-3 py-1.5 font-bold text-xs uppercase text-center">Paver Patio</span>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <span class="text-[10px] font-bold text-brand-red uppercase">Patios</span>
+                        <h4 class="font-bold text-brand-dark text-sm sm:text-base mt-0.5">Luxury Paver Living Space</h4>
+                        <p class="text-xs text-gray-500 mt-0.5">Integrated fire pit & outdoor seating.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-12 sm:py-20 bg-brand-graybg border-t border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+                
+                <div class="lg:col-span-5 space-y-4 sm:space-y-6 reveal reveal-left">
+                    <span class="text-brand-red font-bold text-xs sm:text-sm tracking-widest uppercase">Got Questions?</span>
+                    <h2 class="text-2xl xs:text-3xl sm:text-4xl font-extrabold text-brand-dark uppercase tracking-tight">
+                        Frequently Asked Questions About Masonry Services
+                    </h2>
+                    <p class="text-gray-600 text-xs sm:text-sm leading-relaxed">
+                        Have inquiries regarding estimates, project timelines, materials, or licensing? Here are straightforward answers from our team.
+                    </p>
+                    
+                    <div class="bg-brand-dark text-white p-5 sm:p-6 border border-gray-800 shadow-md">
+                        <div class="flex items-center gap-3.5">
+                            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-brand-red flex items-center justify-center text-lg sm:text-xl shrink-0">
+                                <i class="fa-solid fa-headset"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm sm:text-base">Have More Questions?</h4>
+                                <a href="tel:+1 650-200-8116" class="text-brand-red font-bold text-xs sm:text-sm hover:underline">Call Directly:  +1 650-200-8116</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Accordion List -->
+                <div class="lg:col-span-7 space-y-3 sm:space-y-4 reveal reveal-right delay-200">
+                    <!-- FAQ 1 -->
+                    <div class="faq-item bg-white shadow-sm border border-gray-200 overflow-hidden">
+                        <button class="faq-toggle w-full px-5 py-4 sm:px-6 sm:py-5 text-left font-bold text-xs sm:text-sm text-brand-dark flex justify-between items-center gap-4 hover:text-brand-red transition min-h-[48px]">
+                            <span>How long does a standard concrete patio installation take?</span>
+                            <i class="fa-solid fa-chevron-down text-brand-red text-xs transition-transform duration-300 shrink-0"></i>
+                        </button>
+                        <div class="faq-content hidden px-5 pb-4 sm:px-6 sm:pb-5 text-gray-600 text-xs sm:text-sm leading-relaxed border-t border-gray-100 pt-3">
+                            Most residential patio projects take between 2 to 5 business days, depending on site excavation needs, weather conditions, and concrete curing times.
+                        </div>
+                    </div>
+
+                    <!-- FAQ 2 -->
+                    <div class="faq-item bg-white shadow-sm border border-gray-200 overflow-hidden">
+                        <button class="faq-toggle w-full px-5 py-4 sm:px-6 sm:py-5 text-left font-bold text-xs sm:text-sm text-brand-dark flex justify-between items-center gap-4 hover:text-brand-red transition min-h-[48px]">
+                            <span>Are your masonry and concrete services fully insured and licensed?</span>
+                            <i class="fa-solid fa-chevron-down text-brand-red text-xs transition-transform duration-300 shrink-0"></i>
+                        </button>
+                        <div class="faq-content hidden px-5 pb-4 sm:px-6 sm:pb-5 text-gray-600 text-xs sm:text-sm leading-relaxed border-t border-gray-100 pt-3">
+                            Yes, F&S Masonry carries full general liability insurance, workers' compensation, and holds all required state general contractor licenses.
+                        </div>
+                    </div>
+
+                    <!-- FAQ 3 -->
+                    <div class="faq-item bg-white shadow-sm border border-gray-200 overflow-hidden">
+                        <button class="faq-toggle w-full px-5 py-4 sm:px-6 sm:py-5 text-left font-bold text-xs sm:text-sm text-brand-dark flex justify-between items-center gap-4 hover:text-brand-red transition min-h-[48px]">
+                            <span>Do you provide free on-site estimates?</span>
+                            <i class="fa-solid fa-chevron-down text-brand-red text-xs transition-transform duration-300 shrink-0"></i>
+                        </button>
+                        <div class="faq-content hidden px-5 pb-4 sm:px-6 sm:pb-5 text-gray-600 text-xs sm:text-sm leading-relaxed border-t border-gray-100 pt-3">
+                            Absolutely. We send an estimator to measure your site, evaluate subgrade conditions, discuss material samples, and provide a written quote with zero obligation.
+                        </div>
+                    </div>
+
+                    <!-- FAQ 4 -->
+                    <div class="faq-item bg-white shadow-sm border border-gray-200 overflow-hidden">
+                        <button class="faq-toggle w-full px-5 py-4 sm:px-6 sm:py-5 text-left font-bold text-xs sm:text-sm text-brand-dark flex justify-between items-center gap-4 hover:text-brand-red transition min-h-[48px]">
+                            <span>How do you handle structural retaining wall drainage?</span>
+                            <i class="fa-solid fa-chevron-down text-brand-red text-xs transition-transform duration-300 shrink-0"></i>
+                        </button>
+                        <div class="faq-content hidden px-5 pb-4 sm:px-6 sm:pb-5 text-gray-600 text-xs sm:text-sm leading-relaxed border-t border-gray-100 pt-3">
+                            We install proper perforated drain tile, clean crushed gravel backfill, and weep holes to prevent hydrostatic water pressure from weakening the wall over time.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Client Testimonials Grid -->
+    <section id="testimonials" class="py-12 sm:py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-8 sm:mb-12 reveal">
+                <span class="text-brand-red font-bold text-xs sm:text-sm tracking-widest uppercase">Client Feedback</span>
+                <h2 class="text-2xl xs:text-3xl sm:text-4xl font-extrabold text-brand-dark uppercase tracking-tight mt-1">
+                    What Our Clients Say
+                </h2>
+                <div class="w-16 sm:w-20 h-1 bg-brand-red mx-auto mt-3"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-brand-graybg p-6 sm:p-8 border border-gray-200 shadow-sm flex flex-col justify-between reveal reveal-scale delay-100">
+                    <div>
+                        <div class="flex text-amber-400 gap-1 mb-3 text-xs sm:text-sm">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-gray-700 text-xs sm:text-sm italic leading-relaxed mb-6">
+                            "F&S Masonry replaced our crumbling commercial driveway and entry steps. They arrived right on time, poured high-grade concrete, and finished the project ahead of schedule."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3.5 pt-4 border-t border-gray-200">
+                        <div class="w-10 h-10 bg-brand-red text-white font-bold flex items-center justify-center text-xs shrink-0">
+                            JD
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-brand-dark text-xs sm:text-sm">John Doe</h4>
+                            <span class="text-[11px] text-gray-500">Commercial Site Manager</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="bg-brand-red text-white p-6 sm:p-8 shadow-lg flex flex-col justify-between reveal reveal-scale delay-200">
+                    <div>
+                        <div class="flex text-amber-300 gap-1 mb-3 text-xs sm:text-sm">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-white/90 text-xs sm:text-sm italic leading-relaxed mb-6">
+                            "The retaining wall and stone patio they crafted transformed our entire backyard landscape. Masterful attention to detail and exceptionally clean work site!"
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3.5 pt-4 border-t border-white/20">
+                        <div class="w-10 h-10 bg-white text-brand-red font-bold flex items-center justify-center text-xs shrink-0">
+                            MS
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-white text-xs sm:text-sm">Michael Smith</h4>
+                            <span class="text-[11px] text-white/70">Homeowner</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="bg-brand-graybg p-6 sm:p-8 border border-gray-200 shadow-sm flex flex-col justify-between reveal reveal-scale delay-300">
+                    <div>
+                        <div class="flex text-amber-400 gap-1 mb-3 text-xs sm:text-sm">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="text-gray-700 text-xs sm:text-sm italic leading-relaxed mb-6">
+                            "Excellent brick mortar restoration work on our historic brick property. Honest pricing, great communication, and sturdy craftsmanship."
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-3.5 pt-4 border-t border-gray-200">
+                        <div class="w-10 h-10 bg-brand-dark text-white font-bold flex items-center justify-center text-xs shrink-0">
+                            AR
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-brand-dark text-xs sm:text-sm">Amanda Ray</h4>
+                            <span class="text-[11px] text-gray-500">Property Owner</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & Estimate Form Section -->
+    <section id="contact" class="py-12 sm:py-20 bg-brand-graybg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+                
+                <!-- Contact Info Column -->
+                <div class="lg:col-span-5 space-y-4 sm:space-y-6 reveal reveal-left">
+                    <div>
+                        <span class="text-brand-red font-bold text-xs sm:text-sm tracking-widest uppercase">Start Building</span>
+                        <h2 class="text-2xl xs:text-3xl sm:text-4xl font-extrabold text-brand-dark uppercase tracking-tight mt-1">
+                            Embark On Your Build Journey
+                        </h2>
+                        <p class="text-gray-600 text-xs sm:text-sm mt-2 leading-relaxed">
+                            Fill out the quote form or connect with our master mason team directly to schedule an estimate.
+                        </p>
+                    </div>
+
+                    <div class="space-y-3 pt-2">
+                        <div class="flex items-start gap-3.5 p-3.5 sm:p-4 bg-white border border-gray-200">
+                            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-brand-red/10 text-brand-red flex items-center justify-center text-lg sm:text-xl shrink-0">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-brand-dark text-xs sm:text-sm">Head Office Location</h4>
+                                <p class="text-[11px] sm:text-xs text-gray-600 mt-0.5">1244 Masonry Boulevard, Construction District, Suite 100</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3.5 p-3.5 sm:p-4 bg-white border border-gray-200">
+                            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-brand-red/10 text-brand-red flex items-center justify-center text-lg sm:text-xl shrink-0">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-brand-dark text-xs sm:text-sm">Direct Phone Lines</h4>
+                                <p class="text-[11px] sm:text-xs text-gray-600 mt-0.5">Main: (800) 555-0199</p>
+                                <p class="text-[11px] sm:text-xs text-gray-600">Dispatch: (800) 555-0200</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-3.5 p-3.5 sm:p-4 bg-white border border-gray-200">
+                            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-brand-red/10 text-brand-red flex items-center justify-center text-lg sm:text-xl shrink-0">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-brand-dark text-xs sm:text-sm">Email Inquiries</h4>
+                                <p class="text-[11px] sm:text-xs text-gray-600 mt-0.5">Estimating: info@fandsmasonry.com</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quote Form Column -->
+                <div class="lg:col-span-7 reveal reveal-right delay-200">
+                    <div class="bg-white p-5 sm:p-8 shadow-lg border border-gray-200">
+                        <h3 class="text-xl sm:text-2xl font-bold text-brand-dark mb-4 sm:mb-6">Request A Free Project Estimate</h3>
+                        
+                        <div id="form-success-msg" class="hidden bg-emerald-50 border border-emerald-300 text-emerald-800 p-4 mb-6 text-xs sm:text-sm">
+                            <i class="fa-solid fa-circle-check mr-2 text-emerald-600"></i> Thank you! Your estimate request has been submitted. Our team will contact you shortly.
+                        </div>
+
+                        <form id="contact-form" class="space-y-3.5">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                                <div>
+                                    <label class="block text-[11px] font-bold text-gray-700 uppercase mb-1">First Name *</label>
+                                    <input type="text" required class="w-full bg-gray-50 border border-gray-300 px-3.5 py-3 text-xs sm:text-sm text-gray-800 focus:outline-none focus:border-brand-red focus:bg-white transition min-h-[44px]">
+                                </div>
+                                <div>
+                                    <label class="block text-[11px] font-bold text-gray-700 uppercase mb-1">Last Name *</label>
+                                    <input type="text" required class="w-full bg-gray-50 border border-gray-300 px-3.5 py-3 text-xs sm:text-sm text-gray-800 focus:outline-none focus:border-brand-red focus:bg-white transition min-h-[44px]">
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                                <div>
+                                    <label class="block text-[11px] font-bold text-gray-700 uppercase mb-1">Phone Number *</label>
+                                    <input type="tel" required class="w-full bg-gray-50 border border-gray-300 px-3.5 py-3 text-xs sm:text-sm text-gray-800 focus:outline-none focus:border-brand-red focus:bg-white transition min-h-[44px]">
+                                </div>
+                                <div>
+                                    <label class="block text-[11px] font-bold text-gray-700 uppercase mb-1">Email Address *</label>
+                                    <input type="email" required class="w-full bg-gray-50 border border-gray-300 px-3.5 py-3 text-xs sm:text-sm text-gray-800 focus:outline-none focus:border-brand-red focus:bg-white transition min-h-[44px]">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-[11px] font-bold text-gray-700 uppercase mb-1">Service Type *</label>
+                                <select required class="w-full bg-gray-50 border border-gray-300 px-3.5 py-3 text-xs sm:text-sm text-gray-800 focus:outline-none focus:border-brand-red focus:bg-white transition min-h-[44px]">
+                                    <option value="" disabled selected>Select Primary Service</option>
+                                    <option value="concrete">Concrete Pouring & Driveways</option>
+                                    <option value="retaining">Retaining Walls & Block Systems</option>
+                                    <option value="brick">Brick Masonry & Tuckpointing</option>
+                                    <option value="foundation">Foundation Structural Repair</option>
+                                    <option value="patio">Patio & Paver Hardscaping</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-[11px] font-bold text-gray-700 uppercase mb-1">Project Details / Scope</label>
+                                <textarea rows="3" placeholder="Briefly describe project dimensions, location, or special requirements..." class="w-full bg-gray-50 border border-gray-300 px-3.5 py-3 text-xs sm:text-sm text-gray-800 focus:outline-none focus:border-brand-red focus:bg-white transition"></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full bg-brand-red hover:bg-brand-darkred text-white font-bold py-3.5 px-4 shadow-md hover:shadow-lg transition duration-300 uppercase tracking-wider text-xs sm:text-sm min-h-[48px] flex items-center justify-center gap-2">
+                                <span>Submit Estimate Request</span>
+                                <i class="fa-solid fa-paper-plane text-xs"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Partner Logos Marquee Banner -->
+    <div class="bg-white py-6 border-t border-b border-gray-200 overflow-hidden">
+        <div class="logo-track flex items-center justify-around gap-8 sm:gap-12 font-bold text-gray-600 text-xs sm:text-sm uppercase tracking-wider whitespace-nowrap">
+            <div class="flex items-center gap-2"><i class="fa-solid fa-shield-halved text-xl sm:text-2xl text-brand-red"></i> OSHA CERTIFIED</div>
+            <div class="flex items-center gap-2"><i class="fa-solid fa-building text-xl sm:text-2xl text-brand-red"></i> MASONRY GUILD MEMBER</div>
+            <div class="flex items-center gap-2"><i class="fa-solid fa-certificate text-xl sm:text-2xl text-brand-red"></i> A+ RATED CONTRACTOR</div>
+            <div class="flex items-center gap-2"><i class="fa-solid fa-hard-hat text-xl sm:text-2xl text-brand-red"></i> LICENSED & INSURED</div>
+            <div class="flex items-center gap-2"><i class="fa-solid fa-award text-xl sm:text-2xl text-brand-red"></i> QUALITY CERTIFIED</div>
+
+            <!-- Loop Copy -->
+            <div class="flex items-center gap-2"><i class="fa-solid fa-shield-halved text-xl sm:text-2xl text-brand-red"></i> OSHA CERTIFIED</div>
+            <div class="flex items-center gap-2"><i class="fa-solid fa-building text-xl sm:text-2xl text-brand-red"></i> MASONRY GUILD MEMBER</div>
+            <div class="flex items-center gap-2"><i class="fa-solid fa-certificate text-xl sm:text-2xl text-brand-red"></i> A+ RATED CONTRACTOR</div>
+            <div class="flex items-center gap-2"><i class="fa-solid fa-hard-hat text-xl sm:text-2xl text-brand-red"></i> LICENSED & INSURED</div>
+            <div class="flex items-center gap-2"><i class="fa-solid fa-award text-xl sm:text-2xl text-brand-red"></i> QUALITY CERTIFIED</div>
+        </div>
+    </div>
+
+    <!-- Multi-Column Footer (Stackable Grid) -->
+    <footer class="bg-brand-dark text-white pt-12 sm:pt-16 pb-8 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-10">
+                
+                <!-- Col 1: Brand Info -->
+                <div class="space-y-3">
+                    <div class="flex items-center gap-2.5">
+<a href="#" class="flex items-center group">
+    <img 
+        src="Logo_w.png" 
+        alt="PANAMENO Landscaping & Maintenance" 
+        class="h-10 sm:h-14 md:h-16 w-auto object-contain transition-transform duration-200 group-hover:scale-105"
+    />
+</a>
+                        <span class="font-extrabold text-lg tracking-tight">Panameno</span>
+                    </div>
+                    <p class="text-gray-400 text-xs leading-relaxed">
+                        Precision concrete, structural brickwork, and hardscaping contractor. Engineered for durability, performance, and outstanding curb appeal.
+                    </p>
+                    <div class="flex items-center gap-2.5 pt-1">
+                        <a href="#" aria-label="Facebook" class="w-8 h-8 bg-brand-charcoal hover:bg-brand-red flex items-center justify-center transition text-xs"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram" class="w-8 h-8 bg-brand-charcoal hover:bg-brand-red flex items-center justify-center transition text-xs"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn" class="w-8 h-8 bg-brand-charcoal hover:bg-brand-red flex items-center justify-center transition text-xs"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+
+                <!-- Col 2: Navigation Links -->
+                <div>
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-white mb-3 border-b border-brand-red/40 pb-1.5 inline-block">Navigation</h4>
+                    <ul class="space-y-1.5 text-xs text-gray-400">
+                        <li><a href="#home" class="hover:text-brand-red transition inline-block py-0.5">Home</a></li>
+                        <li><a href="#process" class="hover:text-brand-red transition inline-block py-0.5">Our Process</a></li>
+                        <li><a href="#services" class="hover:text-brand-red transition inline-block py-0.5">Core Services</a></li>
+                        <li><a href="#portfolio" class="hover:text-brand-red transition inline-block py-0.5">Project Gallery</a></li>
+                        <li><a href="#faq" class="hover:text-brand-red transition inline-block py-0.5">Frequently Asked Questions</a></li>
+                        <li><a href="#contact" class="hover:text-brand-red transition inline-block py-0.5">Get A Free Quote</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Services -->
+                <div>
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-white mb-3 border-b border-brand-red/40 pb-1.5 inline-block">Services</h4>
+                    <ul class="space-y-1.5 text-xs text-gray-400">
+                        <li><a href="#services" class="hover:text-brand-red transition inline-block py-0.5">Concrete Pouring & Driveways</a></li>
+                        <li><a href="#services" class="hover:text-brand-red transition inline-block py-0.5">Retaining Wall Construction</a></li>
+                        <li><a href="#services" class="hover:text-brand-red transition inline-block py-0.5">Custom Brickwork & Tuckpointing</a></li>
+                        <li><a href="#services" class="hover:text-brand-red transition inline-block py-0.5">Foundation Repair Solutions</a></li>
+                        <li><a href="#services" class="hover:text-brand-red transition inline-block py-0.5">Paver Patios & Firepits</a></li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Contact Info -->
+                <div>
+                    <h4 class="font-bold text-xs uppercase tracking-wider text-white mb-3 border-b border-brand-red/40 pb-1.5 inline-block">Contact Info</h4>
+                    <ul class="space-y-2 text-xs text-gray-400">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-phone text-brand-red text-xs"></i>+1 650-200-8116</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-envelope text-brand-red text-xs"></i>panamenolandscapllc@gmail.com</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-location-dot text-brand-red text-xs"></i> 1244 Masonry Blvd, Suite 100</li>
+                        <li class="flex items-center gap-2"><i class="fa-regular fa-clock text-brand-red text-xs"></i> Mon - Sat: 7am - 6pm</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="pt-6 border-t border-gray-800 text-center sm:flex sm:justify-between sm:items-center text-xs text-gray-500">
+                <p>&copy; 2026 F&S Masonry & Concrete Specialists. All rights reserved.</p>
+                <div class="flex justify-center gap-4 mt-3 sm:mt-0">
+                    <a href="#" class="hover:text-gray-400 transition">Privacy Policy</a>
+                    <a href="#" class="hover:text-gray-400 transition">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Interactive Script Operations -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            /* Scroll Reveal Observer */
+            const revealElements = document.querySelectorAll(".reveal");
+
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("active");
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: "0px 0px -20px 0px"
+            });
+
+            revealElements.forEach(el => revealObserver.observe(el));
+
+            /* Number Counter Trigger Observer */
+            const counters = document.querySelectorAll(".counter");
+            let animated = false;
+
+            const statsSection = document.getElementById("stats-section");
+            if (statsSection) {
+                const statsObserver = new IntersectionObserver((entries) => {
+                    if (entries[0].isIntersecting && !animated) {
+                        animated = true;
+                        counters.forEach(counter => {
+                            const target = +counter.getAttribute("data-target");
+                            let count = 0;
+                            const increment = Math.ceil(target / 40);
+                            
+                            const updateCounter = () => {
+                                count += increment;
+                                if (count < target) {
+                                    counter.innerText = count;
+                                    setTimeout(updateCounter, 30);
+                                } else {
+                                    counter.innerText = target;
+                                }
+                            };
+                            updateCounter();
+                        });
+                    }
+                }, { threshold: 0.15 });
+
+                statsObserver.observe(statsSection);
+            }
+        });
+
+        /* Mobile Drawer Menu Toggle */
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            const isHidden = mobileMenu.classList.contains('hidden');
+            if (isHidden) {
+                mobileMenu.classList.remove('hidden');
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-xmark');
+            } else {
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars');
+            }
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuIcon.classList.remove('fa-xmark');
+                menuIcon.classList.add('fa-bars');
+            });
+        });
+
+        /* Accordion FAQ Toggle */
+        const faqToggles = document.querySelectorAll('.faq-toggle');
+
+        faqToggles.forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const content = toggle.nextElementSibling;
+                const icon = toggle.querySelector('i');
+                
+                content.classList.toggle('hidden');
+                icon.classList.toggle('rotate-180');
+            });
+        });
+
+        /* Portfolio Category Filter */
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => {
+                    b.classList.remove('active-filter');
+                    b.classList.add('bg-gray-100', 'text-gray-700');
+                });
+
+                btn.classList.add('active-filter');
+                btn.classList.remove('bg-gray-100', 'text-gray-700');
+
+                const filterValue = btn.getAttribute('data-filter');
+
+                portfolioItems.forEach(item => {
+                    if (filterValue === 'all' || item.classList.contains(filterValue)) {
+                        item.style.display = 'block';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        /* Form Submission Handlers */
+        const contactForm = document.getElementById('contact-form');
+        const successMsg = document.getElementById('form-success-msg');
+
+        if (contactForm) {
+            contactForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                successMsg.classList.remove('hidden');
+                contactForm.reset();
+                setTimeout(() => {
+                    successMsg.classList.add('hidden');
+                }, 5000);
+            });
+        }
+
+        const heroForm = document.getElementById('hero-quick-form');
+        if (heroForm) {
+            heroForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('Thank you! Our dispatch team will call you back shortly.');
+                heroForm.reset();
+            });
+        }
+    </script>
+</body>
+</html>
