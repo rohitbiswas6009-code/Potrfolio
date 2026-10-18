@@ -135,6 +135,20 @@
             scroll-snap-align: start;
         }
 
+        /* Mobile services slider */
+        .services-slider {
+            touch-action: pan-x pan-y;
+            overscroll-behavior-x: contain;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        @media (max-width: 639px) {
+            .services-slider {
+                overflow-x: auto;
+                overflow-y: hidden;
+            }
+        }
+
         /* Scrollbar hiding utilities */
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
@@ -249,6 +263,7 @@
 
 <!-- Automatic Changing Background Images -->
     <div id="hero-bg-slider" class="absolute inset-0 z-0">
+        
         <!-- ===== DESKTOP VIEW ===== -->
         <div class="hidden md:block">
             <!-- Image 1 -->
@@ -445,9 +460,9 @@
                 <span>Swipe horizontally to view all services</span>
             </div>
 
-            <div class="flex sm:grid overflow-x-auto sm:overflow-visible snap-x-mandatory sm:snap-none gap-4 sm:gap-6 lg:gap-8 pb-4 sm:pb-0 no-scrollbar sm:grid-cols-2 lg:grid-cols-3">
+            <div class="services-slider flex sm:grid overflow-x-auto overflow-y-hidden sm:overflow-visible snap-x-mandatory sm:snap-none gap-4 sm:gap-6 lg:gap-8 pb-4 sm:pb-0 no-scrollbar sm:grid-cols-2 lg:grid-cols-3">
                 
-                <div class="min-w-[85vw] xs:min-w-[300px] sm:min-w-0 snap-start-item bg-white shadow-md overflow-hidden group hover:shadow-2xl transition duration-300 border border-gray-100 flex flex-col justify-between reveal delay-100">
+                <div class="w-[85vw] xs:w-[300px] shrink-0 sm:w-auto sm:min-w-0 snap-start-item bg-white shadow-sm overflow-hidden group hover:shadow-md transition duration-300 border border-gray-100 flex flex-col justify-between reveal delay-100">
                     <div>
                         <div class="relative h-48 sm:h-56 overflow-hidden">
                             <img src="pic1.jpeg" alt="Concrete Paving" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
@@ -467,7 +482,7 @@
                     </div>
                 </div>
 
-                <div class="min-w-[85vw] xs:min-w-[300px] sm:min-w-0 snap-start-item bg-white shadow-md overflow-hidden group hover:shadow-2xl transition duration-300 border border-gray-100 flex flex-col justify-between reveal delay-200">
+                <div class="w-[85vw] xs:w-[300px] shrink-0 sm:w-auto sm:min-w-0 snap-start-item bg-white shadow-sm overflow-hidden group hover:shadow-md transition duration-300 border border-gray-100 flex flex-col justify-between reveal delay-200">
                     <div>
                         <div class="relative h-48 sm:h-56 overflow-hidden">
                             <img src="pic2.png" alt="Retaining Walls" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
@@ -487,7 +502,7 @@
                     </div>
                 </div>
 
-                <div class="min-w-[85vw] xs:min-w-[300px] sm:min-w-0 snap-start-item bg-white shadow-md overflow-hidden group hover:shadow-2xl transition duration-300 border border-gray-100 flex flex-col justify-between reveal delay-300">
+                <div class="w-[85vw] xs:w-[300px] shrink-0 sm:w-auto sm:min-w-0 snap-start-item bg-white shadow-sm overflow-hidden group hover:shadow-md transition duration-300 border border-gray-100 flex flex-col justify-between reveal delay-300">
                     <div>
                         <div class="relative h-48 sm:h-56 overflow-hidden">
                             <img src="pic3.png" alt="Brick Masonry" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
@@ -589,8 +604,8 @@
                     </div>
                     <div class="p-4">
                         <span class="text-[10px] font-bold text-brand-red uppercase">FENCING</span>
-                        <h4 class="font-bold text-brand-dark text-sm sm:text-base mt-0.5">Custom Wood Fencing</h4>
-                        <p class="text-xs text-gray-500 mt-0.5">High-durability privacy & property boundary.</p>
+                        <h4 class="font-bold text-brand-dark text-sm sm:text-base mt-0.5">Wooden Fence Installation.</h4>
+                        <p class="text-xs text-gray-500 mt-0.5">Custom wood fencing and secure backyard access.</p>
                     </div>
                 </div>
 
@@ -602,9 +617,9 @@
                         </div>
                     </div>
                     <div class="p-4">
-                        <span class="text-[10px] font-bold text-brand-red uppercase">PATIOS</span>
-                        <h4 class="font-bold text-brand-dark text-sm sm:text-base mt-0.5">Luxury Paver Living Space</h4>
-                        <p class="text-xs text-gray-500 mt-0.5">Integrated fire pit & outdoor seating.</p>
+                        <span class="text-[10px] font-bold text-brand-red uppercase">PAVERS & PATIOS</span>
+                        <h4 class="font-bold text-brand-dark text-sm sm:text-base mt-0.5">Custom Paver Patio.</h4>
+                        <p class="text-xs text-gray-500 mt-0.5">Durable paver installation for stylish outdoor living.</p>
                     </div>
                 </div>
 
@@ -616,9 +631,9 @@
                         </div>
                     </div>
                     <div class="p-4">
-                        <span class="text-[10px] font-bold text-brand-red uppercase">HARDSCAPING</span>
-                        <h4 class="font-bold text-brand-dark text-sm sm:text-base mt-0.5">Paver Patio & Drainage</h4>
-                        <p class="text-xs text-gray-500 mt-0.5">Precision paver layout & water management.</p>
+                        <span class="text-[10px] font-bold text-brand-red uppercase">PAVER INSTALLATION</span>
+                        <h4 class="font-bold text-brand-dark text-sm sm:text-base mt-0.5">Concrete Paver Walkway.</h4>
+                        <p class="text-xs text-gray-500 mt-0.5">Precision-laid pavers for clean, durable walkways and patios.</p>
                     </div>
                 </div>
 
@@ -630,9 +645,9 @@
                         </div>
                     </div>
                     <div class="p-4">
-                        <span class="text-[10px] font-bold text-brand-red uppercase">STONE & WALLS</span>
-                        <h4 class="font-bold text-brand-dark text-sm sm:text-base mt-0.5">Terraced Retaining Wall</h4>
-                        <p class="text-xs text-gray-500 mt-0.5">Engineered soil retention & raised planter system.</p>
+                        <span class="text-[10px] font-bold text-brand-red uppercase">LANDSCAPING & PAVERS</span>
+                        <h4 class="font-bold text-brand-dark text-sm sm:text-base mt-0.5">Landscaped Paver Patio.</h4>
+                        <p class="text-xs text-gray-500 mt-0.5">Beautiful outdoor spaces combining quality pavers and natural landscaping.</p>
                     </div>
                 </div>
             </div>
