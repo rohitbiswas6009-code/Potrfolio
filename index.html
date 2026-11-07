@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bulk Gmail & Password Manager</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            background: #0d0d0d;
+            padding: 30px;
+            border-radius: 0px;
+            border: 1px solid #260505;
+            width: 100%;
+            max-width: 550px;
+            box-shadow: 0 10px 25px rgba(239, 68, 68, 0.15);
+        }
+
+        h2, h3 {
+            margin-bottom: 20px;
+            text-align: center;
+            color: #ef4444;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .input-group {
+            margin-bottom: 12px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 4px;
+            color: #a1a1aa;
+            font-size: 13px;
+        }
+
+        input[type="password"], input[type="email"], input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            background: #050505;
+            border: 1px solid #330000;
+            color: #ffffff;
+            border-radius: 0px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        input:focus {
+            border-color: #ef4444;
+        }
+
+        .credential-row {
+            background: #050505;
+            padding: 12px;
+            border: 1px solid #260505;
+            margin-bottom: 12px;
+            position: relative;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #ef4444;
+            color: #ffffff;
+            border: none;
+            border-radius: 0px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: background 0.2s;
+        }
+
+        .btn:hover {
+            background-color: #dc2626;
+        }
+
+        .btn-secondary {
+            background-color: #1a0505;
+            color: #f8fafc;
+            border: 1px solid #450a0a;
+            margin-bottom: 15px;
+        }
+
+        .btn-secondary:hover {
+            background-color: #260505;
+        }
+
+        .btn-danger {
+            background-color: #991b1b;
+            color: #ffffff;
+            margin-top: 15px;
+        }
+
+        .btn-danger:hover {
+            background-color: #7f1d1d;
+        }
+
+        .btn-remove {
+            background-color: #991b1b;
+            color: white;
+            border: none;
+            padding: 4px 8px;
+            cursor: pointer;
+            font-size: 11px;
+            margin-top: 8px;
+            float: right;
+        }
+
+        .btn-remove:hover {
+            background-color: #7f1d1d;
+        }
+
+        .btn-edit {
+            background-color: #b91c1c;
+            color: #ffffff;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .btn-edit:hover {
+            background-color: #991b1b;
+        }
+
+        .error {
+            color: #f87171;
+            font-size: 14px;
+            margin-top: 12px;
+            text-align: center;
+        }
+
+        .success {
+            color: #4ade80;
+            font-size: 14px;
+            margin-top: 12px;
+            text-align: center;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* List Output Styling */
+        .data-list {
+            list-style: none;
+            max-height: 350px;
+            overflow-y: auto;
+            margin-bottom: 15px;
+        }
+
+        .data-item {
+            background: #050505;
+            padding: 12px;
+            border: 1px solid #260505;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .data-content {
+            flex-grow: 1;
+            margin-right: 10px;
+            word-break: break-all;
+        }
+
+        .data-text {
+            font-size: 14px;
+            color: #e4e4e7;
+            line-height: 1.5;
+        }
+
+        .data-time {
+            font-size: 11px;
+            color: #71717a;
+            margin-top: 4px;
+        }
+
+        .action-btns {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .delete-item-btn {
+            background: #991b1b;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .delete-item-btn:hover {
+            background-color: #7f1d1d;
+        }
+
+        .no-data {
+            text-align: center;
+            color: #71717a;
+            padding: 20px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Login Panel -->
+    <div id="login-section" class="container">
+        <h2>Enter PIN Access</h2>
+        <form id="loginForm">
+            <div class="input-group">
+                <label for="pin">Secret PIN</label>
+                <input type="password" id="pin" maxlength="6" required placeholder="Enter PIN">
+            </div>
+            <button type="submit" class="btn">Login</button>
+            <p id="error-msg" class="error"></p>
+        </form>
+    </div>
+
+    <!-- User Dashboard (Bulk Input View) -->
+    <div id="user-section" class="container hidden">
+        <h2>User Dashboard - Bulk Input</h2>
+        <form id="userForm">
+            <div id="credentialsContainer">
+                <!-- Initial Row -->
+                <div class="credential-row">
+                    <div class="input-group">
+                        <label>Gmail Address:</label>
+                        <input type="email" class="gmailInput" required placeholder="example@gmail.com">
+                    </div>
+                    <div class="input-group">
+                        <label>Gmail Password:</label>
+                        <input type="password" class="passwordInput" required placeholder="Enter password">
+                    </div>
+                </div>
+            </div>
+
+            <button type="button" id="addRowBtn" class="btn btn-secondary">+ Add More Account</button>
+            <button type="submit" class="btn">Submit All Credentials</button>
+            <p id="user-msg" class="success"></p>
+        </form>
+        <button id="user-logout" class="btn btn-danger" style="margin-top: 15px;">Logout</button>
+    </div>
+
+    <!-- Admin Dashboard (Output List & Edit View) -->
+    <div id="admin-section" class="container hidden">
+        <h2>Admin Dashboard</h2>
+        <h3>All Saved Credentials</h3>
+        <ul id="dataList" class="data-list"></ul>
+        <button id="clear-all-btn" class="btn btn-danger">Clear All Data</button>
+        <button id="admin-logout" class="btn" style="margin-top: 10px; background-color: #27272a; color: white;">Logout</button>
+    </div>
+
+    <script>
+        const loginForm = document.getElementById('loginForm');
+        const loginSection = document.getElementById('login-section');
+        const userSection = document.getElementById('user-section');
+        const adminSection = document.getElementById('admin-section');
+        const errorMsg = document.getElementById('error-msg');
+        
+        const userForm = document.getElementById('userForm');
+        const credentialsContainer = document.getElementById('credentialsContainer');
+        const addRowBtn = document.getElementById('addRowBtn');
+        const userMsg = document.getElementById('user-msg');
+        const dataList = document.getElementById('dataList');
+
+        // PIN Configuration
+        const ADMIN_PIN = "9999";
+        const USER_PIN = "1234";
+
+        // Login Logic
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const pin = document.getElementById('pin').value.trim();
+
+            if (pin === ADMIN_PIN) {
+                errorMsg.textContent = "";
+                loginSection.classList.add('hidden');
+                adminSection.classList.remove('hidden');
+                loadAdminData();
+            } else if (pin === USER_PIN) {
+                errorMsg.textContent = "";
+                loginSection.classList.add('hidden');
+                userSection.classList.remove('hidden');
+            } else {
+                errorMsg.textContent = "Invalid PIN!";
+            }
+        });
+
+        // Add More Input Rows Dynamically
+        addRowBtn.addEventListener('click', function() {
+            const row = document.createElement('div');
+            row.className = 'credential-row';
+            row.innerHTML = `
+                <div class="input-group">
+                    <label>Gmail Address:</label>
+                    <input type="email" class="gmailInput" required placeholder="example@gmail.com">
+                </div>
+                <div class="input-group">
+                    <label>Gmail Password:</label>
+                    <input type="password" class="passwordInput" required placeholder="Enter password">
+                </div>
+                <button type="button" class="btn-remove" onclick="this.parentElement.remove()">Remove</button>
+                <div style="clear: both;"></div>
+            `;
+            credentialsContainer.appendChild(row);
+        });
+
+        // User Bulk Credential Submission Logic
+        userForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const gmailInputs = document.querySelectorAll('.gmailInput');
+            const passwordInputs = document.querySelectorAll('.passwordInput');
+
+            let existingData = JSON.parse(localStorage.getItem('savedBulkCredentials')) || [];
+            let newEntriesCount = 0;
+
+            for (let i = 0; i < gmailInputs.length; i++) {
+                const gmail = gmailInputs[i].value.trim();
+                const password = passwordInputs[i].value.trim();
+
+                if (gmail && password) {
+                    const newItem = {
+                        id: Date.now() + i,
+                        gmail: gmail,
+                        password: password,
+                        timestamp: new Date().toLocaleString()
+                    };
+                    existingData.push(newItem);
+                    newEntriesCount++;
+                }
+            }
+
+            if (newEntriesCount > 0) {
+                localStorage.setItem('savedBulkCredentials', JSON.stringify(existingData));
+                
+                // Reset form back to 1 empty row
+                credentialsContainer.innerHTML = `
+                    <div class="credential-row">
+                        <div class="input-group">
+                            <label>Gmail Address:</label>
+                            <input type="email" class="gmailInput" required placeholder="example@gmail.com">
+                        </div>
+                        <div class="input-group">
+                            <label>Gmail Password:</label>
+                            <input type="password" class="passwordInput" required placeholder="Enter password">
+                        </div>
+                    </div>
+                `;
+
+                userMsg.textContent = `${newEntriesCount} set(s) of credentials submitted successfully!`;
+                setTimeout(() => { userMsg.textContent = ""; }, 3000);
+            }
+        });
+
+        // Load Admin Data List & Edit Capability
+        function loadAdminData() {
+            dataList.innerHTML = "";
+            let storedData = JSON.parse(localStorage.getItem('savedBulkCredentials')) || [];
+
+            if (storedData.length === 0) {
+                dataList.innerHTML = '<li class="no-data">No credentials submitted yet.</li>';
+                return;
+            }
+
+            storedData.forEach(item => {
+                const li = document.createElement('li');
+                li.className = 'data-item';
+                li.innerHTML = `
+                    <div class="data-content">
+                        <div class="data-text"><strong>Gmail:</strong> ${escapeHtml(item.gmail)}</div>
+                        <div class="data-text"><strong>Password:</strong> ${escapeHtml(item.password)}</div>
+                        <div class="data-time">${item.timestamp}</div>
+                    </div>
+                    <div class="action-btns">
+                        <button class="btn-edit" onclick="editItem(${item.id})">Edit</button>
+                        <button class="delete-item-btn" onclick="deleteItem(${item.id})">Delete</button>
+                    </div>
+                `;
+                dataList.appendChild(li);
+            });
+        }
+
+        // Edit Credential Item Function
+        window.editItem = function(id) {
+            let storedData = JSON.parse(localStorage.getItem('savedBulkCredentials')) || [];
+            const item = storedData.find(d => d.id === id);
+            
+            if (item) {
+                const newGmail = prompt("Edit Gmail Address:", item.gmail);
+                if (newGmail !== null) {
+                    const newPassword = prompt("Edit Password:", item.password);
+                    if (newPassword !== null) {
+                        if (newGmail.trim() !== "" && newPassword.trim() !== "") {
+                            item.gmail = newGmail.trim();
+                            item.password = newPassword.trim();
+                            item.timestamp = "Edited: " + new Date().toLocaleString();
+                            localStorage.setItem('savedBulkCredentials', JSON.stringify(storedData));
+                            loadAdminData();
+                        } else {
+                            alert("Fields cannot be empty!");
+                        }
+                    }
+                }
+            }
+        };
+
+        // Delete Single Item
+        window.deleteItem = function(id) {
+            let storedData = JSON.parse(localStorage.getItem('savedBulkCredentials')) || [];
+            storedData = storedData.filter(item => item.id !== id);
+            localStorage.setItem('savedBulkCredentials', JSON.stringify(storedData));
+            loadAdminData();
+        };
+
+        // Clear All Data Logic
+        document.getElementById('clear-all-btn').addEventListener('click', function() {
+            if (confirm("Are you sure you want to delete all stored credentials?")) {
+                localStorage.removeItem('savedBulkCredentials');
+                loadAdminData();
+            }
+        });
+
+        // Logout Event Listeners
+        document.getElementById('user-logout').addEventListener('click', logout);
+        document.getElementById('admin-logout').addEventListener('click', logout);
+
+        function logout() {
+            userSection.classList.add('hidden');
+            adminSection.classList.add('hidden');
+            loginSection.classList.remove('hidden');
+            loginForm.reset();
+        }
+
+        // Helper Function to Prevent HTML Injection
+        function escapeHtml(str) {
+            return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+        }
+    </script>
+</body>
+</html>
