@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bulk Gmail & Password Manager</title>
+    <title>Secure Portal</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: Arial, sans-serif;
+            border-radius: 0px !important;
+            border: none !important; /* All borders removed */
         }
 
         body {
@@ -23,19 +25,16 @@
         }
 
         .container {
-            background: #0d0d0d;
+            background: #111111; /* Slightly lighter black for subtle separation without border */
             padding: 30px;
-            border-radius: 0px;
-            border: 1px solid #260505;
             width: 100%;
             max-width: 550px;
-            box-shadow: 0 10px 25px rgba(239, 68, 68, 0.15);
         }
 
         h2, h3 {
             margin-bottom: 20px;
             text-align: center;
-            color: #ef4444;
+            color: #ffffff;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
@@ -47,29 +46,22 @@
         .input-group label {
             display: block;
             margin-bottom: 4px;
-            color: #a1a1aa;
+            color: #aaaaaa;
             font-size: 13px;
         }
 
         input[type="password"], input[type="email"], input[type="text"] {
             width: 100%;
-            padding: 10px;
-            background: #050505;
-            border: 1px solid #330000;
+            padding: 12px;
+            background: #000000;
             color: #ffffff;
-            border-radius: 0px;
             outline: none;
             font-size: 14px;
         }
 
-        input:focus {
-            border-color: #ef4444;
-        }
-
         .credential-row {
-            background: #050505;
+            background: #000000;
             padding: 12px;
-            border: 1px solid #260505;
             margin-bottom: 12px;
             position: relative;
         }
@@ -77,47 +69,42 @@
         .btn {
             width: 100%;
             padding: 12px;
-            background-color: #ef4444;
-            color: #ffffff;
-            border: none;
-            border-radius: 0px;
+            background-color: #ffffff;
+            color: #000000;
             cursor: pointer;
             font-size: 15px;
             font-weight: bold;
             text-transform: uppercase;
-            transition: background 0.2s;
         }
 
         .btn:hover {
-            background-color: #dc2626;
+            background-color: #cccccc;
         }
 
         .btn-secondary {
-            background-color: #1a0505;
-            color: #f8fafc;
-            border: 1px solid #450a0a;
+            background-color: #222222;
+            color: #ffffff;
             margin-bottom: 15px;
         }
 
         .btn-secondary:hover {
-            background-color: #260505;
+            background-color: #333333;
         }
 
         .btn-danger {
-            background-color: #991b1b;
+            background-color: #222222;
             color: #ffffff;
             margin-top: 15px;
         }
 
         .btn-danger:hover {
-            background-color: #7f1d1d;
+            background-color: #333333;
         }
 
         .btn-remove {
-            background-color: #991b1b;
-            color: white;
-            border: none;
-            padding: 4px 8px;
+            background-color: #222222;
+            color: #ffffff;
+            padding: 6px 10px;
             cursor: pointer;
             font-size: 11px;
             margin-top: 8px;
@@ -125,39 +112,38 @@
         }
 
         .btn-remove:hover {
-            background-color: #7f1d1d;
+            background-color: #333333;
         }
 
         .btn-edit {
-            background-color: #b91c1c;
-            color: #ffffff;
-            border: none;
-            padding: 5px 10px;
+            background-color: #ffffff;
+            color: #000000;
+            padding: 6px 12px;
             cursor: pointer;
             font-size: 12px;
             font-weight: bold;
         }
 
         .btn-edit:hover {
-            background-color: #991b1b;
+            background-color: #cccccc;
         }
 
         .error {
-            color: #f87171;
+            color: #ffffff;
             font-size: 14px;
             margin-top: 12px;
             text-align: center;
         }
 
         .success {
-            color: #4ade80;
+            color: #ffffff;
             font-size: 14px;
             margin-top: 12px;
             text-align: center;
         }
 
         .hidden {
-            display: none;
+            display: none !important;
         }
 
         /* List Output Styling */
@@ -166,12 +152,12 @@
             max-height: 350px;
             overflow-y: auto;
             margin-bottom: 15px;
+            padding-right: 5px;
         }
 
         .data-item {
-            background: #050505;
+            background: #000000;
             padding: 12px;
-            border: 1px solid #260505;
             margin-bottom: 10px;
             display: flex;
             justify-content: space-between;
@@ -186,13 +172,13 @@
 
         .data-text {
             font-size: 14px;
-            color: #e4e4e7;
+            color: #ffffff;
             line-height: 1.5;
         }
 
         .data-time {
             font-size: 11px;
-            color: #71717a;
+            color: #888888;
             margin-top: 4px;
         }
 
@@ -203,21 +189,21 @@
         }
 
         .delete-item-btn {
-            background: #991b1b;
-            color: white;
-            border: none;
-            padding: 5px 10px;
+            background: #ffffff;
+            color: #000000;
+            padding: 6px 12px;
             cursor: pointer;
             font-size: 12px;
+            font-weight: bold;
         }
 
         .delete-item-btn:hover {
-            background-color: #7f1d1d;
+            background-color: #cccccc;
         }
 
         .no-data {
             text-align: center;
-            color: #71717a;
+            color: #888888;
             padding: 20px 0;
         }
     </style>
@@ -226,27 +212,26 @@
 
     <!-- Login Panel -->
     <div id="login-section" class="container">
-        <h2>Enter PIN Access</h2>
+        <h2>Rohit's Secure Portal</h2>
         <form id="loginForm">
             <div class="input-group">
-                <label for="pin">Secret PIN</label>
                 <input type="password" id="pin" maxlength="6" required placeholder="Enter PIN">
             </div>
             <button type="submit" class="btn">Login</button>
-            <p id="error-msg" class="error"></p>
+            <p id="error-msg"></p>
         </form>
     </div>
 
-    <!-- User Dashboard (Bulk Input View) -->
+    <!-- User Dashboard -->
     <div id="user-section" class="container hidden">
-        <h2>User Dashboard - Bulk Input</h2>
+        <h2>Rohit's Secure Portal</h2>
         <form id="userForm">
             <div id="credentialsContainer">
                 <!-- Initial Row -->
                 <div class="credential-row">
                     <div class="input-group">
                         <label>Gmail Address:</label>
-                        <input type="email" class="gmailInput" required placeholder="example@gmail.com">
+                        <input type="email" class="gmailInput" required placeholder="Enter Gmail address">
                     </div>
                     <div class="input-group">
                         <label>Gmail Password:</label>
@@ -264,11 +249,11 @@
 
     <!-- Admin Dashboard (Output List & Edit View) -->
     <div id="admin-section" class="container hidden">
-        <h2>Admin Dashboard</h2>
-        <h3>All Saved Credentials</h3>
+        <h2>Rohit Biswas</h2>
+        <h3>Saved Credentials</h3>
         <ul id="dataList" class="data-list"></ul>
         <button id="clear-all-btn" class="btn btn-danger">Clear All Data</button>
-        <button id="admin-logout" class="btn" style="margin-top: 10px; background-color: #27272a; color: white;">Logout</button>
+        <button id="admin-logout" class="btn btn-secondary" style="margin-top: 10px;">Logout</button>
     </div>
 
     <script>
@@ -285,8 +270,8 @@
         const dataList = document.getElementById('dataList');
 
         // PIN Configuration
-        const ADMIN_PIN = "9999";
-        const USER_PIN = "1234";
+        const ADMIN_PIN = "080501";
+        const USER_PIN = "111111";
 
         // Login Logic
         loginForm.addEventListener('submit', function(e) {
@@ -304,6 +289,7 @@
                 userSection.classList.remove('hidden');
             } else {
                 errorMsg.textContent = "Invalid PIN!";
+                errorMsg.className = "error";
             }
         });
 
@@ -368,7 +354,7 @@
                     </div>
                 `;
 
-                userMsg.textContent = `${newEntriesCount} set(s) of credentials submitted successfully!`;
+                userMsg.textContent = `${newEntriesCount} set(s) submitted successfully!`;
                 setTimeout(() => { userMsg.textContent = ""; }, 3000);
             }
         });
