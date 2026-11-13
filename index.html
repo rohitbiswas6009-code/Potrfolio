@@ -135,12 +135,8 @@
   <header class="w-full border-b border-crimson-border bg-obsidian/95 sticky top-0 z-40">
     <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
       <div class="flex items-center gap-3">
-        <div class="w-3 h-3 bg-crimson animate-pulse"></div>
         <span class="text-sm sm:text-base font-extrabold tracking-widest text-white uppercase">
-          CRIMSON<span class="text-crimson">_VAULT</span>
-        </span>
-        <span class="hidden md:inline-block text-xs text-crimson-dim border border-crimson-border px-2 py-0.5">
-          AES-GCM-256 // LOCAL_ENCLAVE
+          Rohit's<span class="text-crimson"> Access Hub</span>
         </span>
       </div>
     </div>
@@ -153,7 +149,7 @@
   <!-- VIEW 1: MASTER PASSWORD LOCK SCREEN                                   -->
   <!-- ===================================================================== -->
   <main id="lockScreenView" class="flex-grow flex items-center justify-center p-4">
-    <div id="lockBox" class="w-full max-w-lg border border-crimson bg-obsidian p-6 sm:p-8 relative">
+    <div id="lockBox" class="w-full max-w-sm border border-crimson bg-obsidian p-5 sm:p-6 relative">
       <!-- Corner Tactical Markers -->
       <div class="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-crimson"></div>
       <div class="absolute top-0 right-0 w-2 h-2 border-t-2 border-r-2 border-crimson"></div>
@@ -162,23 +158,16 @@
 
       <!-- Terminal ASCII / Header -->
       <div class="border-b border-crimson-border pb-4 mb-6">
-        <div class="flex items-center justify-between text-xs text-crimson mb-2">
-          <span>SYS.AUTH // GATEWAY_01</span>
-          <span id="clockDisplay">00:00:00 UTC</span>
-        </div>
         <h1 class="text-xl sm:text-2xl font-extrabold tracking-tight text-white uppercase">
-          RESTRICTED ACCESS<span class="text-crimson cursor-blink">_</span>
+          LOG IN
         </h1>
-        <p class="text-xs text-neutral-400 mt-1">
-          Enter master decryption key to mount local Wi-Fi credential store.
-        </p>
       </div>
 
       <!-- Unlock Form -->
       <form id="unlockForm" onsubmit="handleUnlock(event)" class="space-y-5">
         <div>
           <label for="masterPasswordInput" class="block text-xs font-bold uppercase tracking-wider text-crimson mb-2">
-            &gt; MASTER_DECRYPTION_KEY:
+          
           </label>
           <div class="relative flex items-center border border-crimson-border focus-within:border-crimson bg-void">
             <span class="pl-3 text-crimson font-bold text-sm select-none">#</span>
@@ -187,12 +176,12 @@
               id="masterPasswordInput" 
               autocomplete="off"
               required
-              placeholder="ENTER ACCESS PASSPHRASE..."
+              placeholder="ENTER PASSWORD"
               class="w-full bg-transparent text-white text-sm px-3 py-3 focus:outline-none placeholder-neutral-700 tracking-wider"
             />
           </div>
           <div id="lockErrorMsg" class="hidden mt-2 text-xs text-crimson font-bold bg-crimson-dark/30 border border-crimson px-3 py-1.5">
-            [!] ACCESS DENIED: INVALID DECRYPTION KEY
+            [!] ACCESS DENIED
           </div>
         </div>
 
@@ -200,18 +189,11 @@
           type="submit" 
           class="w-full py-3 px-4 bg-crimson hover:bg-crimson-bright text-void font-extrabold text-sm tracking-widest uppercase transition-colors cursor-pointer flex items-center justify-center gap-2"
         >
-          <span>DECRYPT &amp; MOUNT VAULT</span>
+          <span>ACCESS</span>
           <span>&gt;&gt;</span>
         </button>
       </form>
 
-      <!-- Storage Footer -->
-      <div class="mt-6 pt-4 border-t border-crimson-border/60 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-[11px] text-neutral-500">
-        <div aria-hidden="true"></div>
-        <div class="text-crimson-dim">
-          STORAGE: BROWSER_LOCAL
-        </div>
-      </div>
     </div>
   </main>
 
@@ -226,9 +208,6 @@
         <span class="text-xs font-bold uppercase tracking-wider text-neutral-400">
           &gt; DECRYPTED_NODES (<span id="visibleCountLabel" class="text-crimson">0</span>)
         </span>
-        <span class="text-[11px] text-neutral-600 hidden sm:inline">
-          AUTO-ENCRYPTED ON EVERY WRITE
-        </span>
       </div>
 
       <div id="credentialsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -237,17 +216,6 @@
     </section>
   </main>
 
-  <!-- TERMINAL FOOTER -->
-  <footer class="w-full border-t border-crimson-border bg-obsidian py-3 px-4 mt-8">
-    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] text-neutral-500">
-      <div>
-        CRIMSON_VAULT // ZERO-TRUST CLIENT-SIDE WIFI STORAGE
-      </div>
-      <div>
-        ALL CREDENTIALS ENCRYPTED IN LOCALSTORAGE // NO EXTERNAL TELEMETRY
-      </div>
-    </div>
-  </footer>
 
   <!-- ===================================================================== -->
   <!-- APPLICATION LOGIC & WEB CRYPTO API AES-256-GCM IMPLEMENTATION         -->
@@ -272,16 +240,71 @@
     const SAMPLE_CREDENTIALS = [
       {
         id: 'node-' + Date.now() + '-1',
-        ssid: 'Arnab',
-        password: '11223344',
+        ssid: 'Alok',
+        password: '12341234',
         security: 'WPA2',
         notes: '',
         updatedAt: '2026-11-13'
       },
       {
         id: 'node-' + Date.now() + '-2',
-        ssid: 'DEPIA.COM',
-        password: '12344323',
+        ssid: 'Tapash',
+        password: '11112222',
+        security: 'WPA2',
+        notes: '',
+        updatedAt: '2026-11-13'
+      },
+      {
+        id: 'node-' + Date.now() + '-3',
+        ssid: 'Tapash 5g',
+        password: '11112222',
+        security: 'WPA2',
+        notes: '',
+        updatedAt: '2026-11-13'
+      },
+      {
+        id: 'node-' + Date.now() + '-4',
+        ssid: 'Tonni',
+        password: 'tonni@2014',
+        security: 'WPA2',
+        notes: '',
+        updatedAt: '2026-11-13'
+      },
+      {
+        id: 'node-' + Date.now() + '-6',
+        ssid: 'TP-Link_2EFC',
+        password: '22222222',
+        security: 'WPA2',
+        notes: '',
+        updatedAt: '2026-11-13'
+      },
+      {
+        id: 'node-' + Date.now() + '-7',
+        ssid: 'Tenda_191B20',
+        password: '@utta4288@',
+        security: 'WPA2',
+        notes: '',
+        updatedAt: '2026-11-13'
+      },
+      {
+        id: 'node-' + Date.now() + '-8',
+        ssid: 'Tenda_5g',
+        password: '@utta4288@',
+        security: 'WPA2',
+        notes: '',
+        updatedAt: '2026-11-13'
+      },
+      {
+        id: 'node-' + Date.now() + '-9',
+        ssid: 'Mridha',
+        password: '@mridha2019',
+        security: 'WPA2',
+        notes: '',
+        updatedAt: '2026-11-13'
+      },      {
+        id: 'node-' + Date.now() + '-1',
+        ssid: 'Arnab',
+        password: '11223344',
         security: 'WPA2',
         notes: '',
         updatedAt: '2026-11-13'
