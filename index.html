@@ -1,446 +1,624 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secure Portal</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-            border-radius: 0px !important;
-            border: none !important; /* All borders removed */
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CRIMSON_VAULT // ENCRYPTED WIFI STORAGE</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;0,800;1,400&display=swap" rel="stylesheet">
 
-        body {
-            background-color: #000000;
-            color: #ffffff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            void: '#030303',
+            obsidian: '#09090b',
+            crimson: {
+              DEFAULT: '#ff0033',
+              bright: '#ff1a47',
+              dim: '#99001f',
+              dark: '#3b040e',
+              border: '#590818'
+            }
+          },
+          borderRadius: {
+            none: '0px',
+            DEFAULT: '0px',
+            sm: '0px',
+            md: '0px',
+            lg: '0px',
+            xl: '0px',
+            '2xl': '0px',
+            '3xl': '0px',
+            full: '0px',
+          }
         }
+      }
+    }
+  </script>
 
-        .container {
-            background: #111111; /* Slightly lighter black for subtle separation without border */
-            padding: 30px;
-            width: 100%;
-            max-width: 550px;
-        }
+  <style>
+    /* Strict Zero Border Radius & No Box Shadows Enforcement */
+    *, *::before, *::after {
+      border-radius: 0px !important;
+      box-shadow: none !important;
+      font-family: 'JetBrains Mono', monospace;
+    }
 
-        h2, h3 {
-            margin-bottom: 20px;
-            text-align: center;
-            color: #ffffff;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+    body {
+      background-color: #030303;
+      color: #e5e5e5;
+      overflow-x: hidden;
+    }
 
-        .input-group {
-            margin-bottom: 12px;
-        }
+    /* Correct way to style text selection */
+    ::selection {
+      background: #ff0033;
+      color: #030303;
+    }
 
-        .input-group label {
-            display: block;
-            margin-bottom: 4px;
-            color: #aaaaaa;
-            font-size: 13px;
-        }
+    /* Subtle CRT Scanlines & Tactical Grid Background */
+    .cyber-grid {
+      background-size: 32px 32px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 0, 51, 0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 0, 51, 0.04) 1px, transparent 1px);
+    }
 
-        input[type="password"], input[type="email"], input[type="text"] {
-            width: 100%;
-            padding: 12px;
-            background: #000000;
-            color: #ffffff;
-            outline: none;
-            font-size: 14px;
-        }
+    .scanlines::before {
+      content: " ";
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background: linear-gradient(
+        rgba(18, 16, 16, 0) 50%, 
+        rgba(0, 0, 0, 0.35) 50%
+      );
+      z-index: 9998;
+      background-size: 100% 3px;
+      pointer-events: none;
+    }
 
-        .credential-row {
-            background: #000000;
-            padding: 12px;
-            margin-bottom: 12px;
-            position: relative;
-        }
+    /* Blinking Cursor Animation */
+    @keyframes blink {
+      0%, 49% { opacity: 1; }
+      50%, 100% { opacity: 0; }
+    }
+    .cursor-blink {
+      animation: blink 1s infinite;
+    }
 
-        .btn {
-            width: 100%;
-            padding: 12px;
-            background-color: #ffffff;
-            color: #000000;
-            cursor: pointer;
-            font-size: 15px;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #050505;
+      border-left: 1px solid #3b040e;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #99001f;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #ff0033;
+    }
 
-        .btn:hover {
-            background-color: #cccccc;
-        }
-
-        .btn-secondary {
-            background-color: #222222;
-            color: #ffffff;
-            margin-bottom: 15px;
-        }
-
-        .btn-secondary:hover {
-            background-color: #333333;
-        }
-
-        .btn-danger {
-            background-color: #222222;
-            color: #ffffff;
-            margin-top: 15px;
-        }
-
-        .btn-danger:hover {
-            background-color: #333333;
-        }
-
-        .btn-remove {
-            background-color: #222222;
-            color: #ffffff;
-            padding: 6px 10px;
-            cursor: pointer;
-            font-size: 11px;
-            margin-top: 8px;
-            float: right;
-        }
-
-        .btn-remove:hover {
-            background-color: #333333;
-        }
-
-        .btn-edit {
-            background-color: #ffffff;
-            color: #000000;
-            padding: 6px 12px;
-            cursor: pointer;
-            font-size: 12px;
-            font-weight: bold;
-        }
-
-        .btn-edit:hover {
-            background-color: #cccccc;
-        }
-
-        .error {
-            color: #ffffff;
-            font-size: 14px;
-            margin-top: 12px;
-            text-align: center;
-        }
-
-        .success {
-            color: #ffffff;
-            font-size: 14px;
-            margin-top: 12px;
-            text-align: center;
-        }
-
-        .hidden {
-            display: none !important;
-        }
-
-        /* List Output Styling */
-        .data-list {
-            list-style: none;
-            max-height: 350px;
-            overflow-y: auto;
-            margin-bottom: 15px;
-            padding-right: 5px;
-        }
-
-        .data-item {
-            background: #000000;
-            padding: 12px;
-            margin-bottom: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .data-content {
-            flex-grow: 1;
-            margin-right: 10px;
-            word-break: break-all;
-        }
-
-        .data-text {
-            font-size: 14px;
-            color: #ffffff;
-            line-height: 1.5;
-        }
-
-        .data-time {
-            font-size: 11px;
-            color: #888888;
-            margin-top: 4px;
-        }
-
-        .action-btns {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
-
-        .delete-item-btn {
-            background: #ffffff;
-            color: #000000;
-            padding: 6px 12px;
-            cursor: pointer;
-            font-size: 12px;
-            font-weight: bold;
-        }
-
-        .delete-item-btn:hover {
-            background-color: #cccccc;
-        }
-
-        .no-data {
-            text-align: center;
-            color: #888888;
-            padding: 20px 0;
-        }
-    </style>
+    /* Glitch Shake on Wrong Password */
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-6px); }
+      40%, 80% { transform: translateX(6px); }
+    }
+    .shake-error {
+      animation: shake 0.35s ease-in-out;
+    }
+  </style>
 </head>
-<body>
+<body class="min-h-screen bg-void text-neutral-200 cyber-grid scanlines flex flex-col justify-between">
 
-    <!-- Login Panel -->
-    <div id="login-section" class="container">
-        <h2>Input Portal</h2>
-        <form id="loginForm">
-            <div class="input-group">
-                <input type="password" id="pin" maxlength="6" required placeholder="Enter PIN">
-            </div>
-            <button type="submit" class="btn">Login</button>
-            <p id="error-msg"></p>
-        </form>
+  <!-- TOP TELEMETRY / SYSTEM HEADER -->
+  <header class="w-full border-b border-crimson-border bg-obsidian/95 sticky top-0 z-40">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap items-center justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <div class="w-3 h-3 bg-crimson animate-pulse"></div>
+        <span class="text-sm sm:text-base font-extrabold tracking-widest text-white uppercase">
+          CRIMSON<span class="text-crimson">_VAULT</span>
+        </span>
+        <span class="hidden md:inline-block text-xs text-crimson-dim border border-crimson-border px-2 py-0.5">
+          AES-GCM-256 // LOCAL_ENCLAVE
+        </span>
+      </div>
     </div>
+  </header>
 
-    <!-- User Dashboard -->
-    <div id="user-section" class="container hidden">
-        <h2>Input Portal</h2>
-        <form id="userForm">
-            <div id="credentialsContainer">
-                <!-- Initial Row -->
-                <div class="credential-row">
-                    <div class="input-group">
-                        <label>Gmail Address:</label>
-                        <input type="email" class="gmailInput" required placeholder="Enter Gmail address">
-                    </div>
-                    <div class="input-group">
-                        <label>Gmail Password:</label>
-                        <input type="password" class="passwordInput" required placeholder="Enter password">
-                    </div>
-                </div>
-            </div>
+  <!-- TOAST NOTIFICATION BANNER -->
+  <div id="toastContainer" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 max-w-sm w-full pointer-events-none px-4 sm:px-0"></div>
 
-            <button type="button" id="addRowBtn" class="btn btn-secondary">+ Add More Account</button>
-            <button type="submit" class="btn">Submit All Credentials</button>
-            <p id="user-msg" class="success"></p>
-        </form>
-        <button id="user-logout" class="btn btn-danger" style="margin-top: 15px;">Logout</button>
+  <!-- ===================================================================== -->
+  <!-- VIEW 1: MASTER PASSWORD LOCK SCREEN                                   -->
+  <!-- ===================================================================== -->
+  <main id="lockScreenView" class="flex-grow flex items-center justify-center p-4">
+    <div id="lockBox" class="w-full max-w-lg border border-crimson bg-obsidian p-6 sm:p-8 relative">
+      <!-- Corner Tactical Markers -->
+      <div class="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-crimson"></div>
+      <div class="absolute top-0 right-0 w-2 h-2 border-t-2 border-r-2 border-crimson"></div>
+      <div class="absolute bottom-0 left-0 w-2 h-2 border-b-2 border-l-2 border-crimson"></div>
+      <div class="absolute bottom-0 right-0 w-2 h-2 border-b-2 border-r-2 border-crimson"></div>
+
+      <!-- Terminal ASCII / Header -->
+      <div class="border-b border-crimson-border pb-4 mb-6">
+        <div class="flex items-center justify-between text-xs text-crimson mb-2">
+          <span>SYS.AUTH // GATEWAY_01</span>
+          <span id="clockDisplay">00:00:00 UTC</span>
+        </div>
+        <h1 class="text-xl sm:text-2xl font-extrabold tracking-tight text-white uppercase">
+          RESTRICTED ACCESS<span class="text-crimson cursor-blink">_</span>
+        </h1>
+        <p class="text-xs text-neutral-400 mt-1">
+          Enter master decryption key to mount local Wi-Fi credential store.
+        </p>
+      </div>
+
+      <!-- Unlock Form -->
+      <form id="unlockForm" onsubmit="handleUnlock(event)" class="space-y-5">
+        <div>
+          <label for="masterPasswordInput" class="block text-xs font-bold uppercase tracking-wider text-crimson mb-2">
+            &gt; MASTER_DECRYPTION_KEY:
+          </label>
+          <div class="relative flex items-center border border-crimson-border focus-within:border-crimson bg-void">
+            <span class="pl-3 text-crimson font-bold text-sm select-none">#</span>
+            <input 
+              type="password" 
+              id="masterPasswordInput" 
+              autocomplete="off"
+              required
+              placeholder="ENTER ACCESS PASSPHRASE..."
+              class="w-full bg-transparent text-white text-sm px-3 py-3 focus:outline-none placeholder-neutral-700 tracking-wider"
+            />
+          </div>
+          <div id="lockErrorMsg" class="hidden mt-2 text-xs text-crimson font-bold bg-crimson-dark/30 border border-crimson px-3 py-1.5">
+            [!] ACCESS DENIED: INVALID DECRYPTION KEY
+          </div>
+        </div>
+
+        <button 
+          type="submit" 
+          class="w-full py-3 px-4 bg-crimson hover:bg-crimson-bright text-void font-extrabold text-sm tracking-widest uppercase transition-colors cursor-pointer flex items-center justify-center gap-2"
+        >
+          <span>DECRYPT &amp; MOUNT VAULT</span>
+          <span>&gt;&gt;</span>
+        </button>
+      </form>
+
+      <!-- Storage Footer -->
+      <div class="mt-6 pt-4 border-t border-crimson-border/60 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-[11px] text-neutral-500">
+        <div aria-hidden="true"></div>
+        <div class="text-crimson-dim">
+          STORAGE: BROWSER_LOCAL
+        </div>
+      </div>
     </div>
+  </main>
 
-    <!-- Admin Dashboard (Output List & Edit View) -->
-    <div id="admin-section" class="container hidden">
-        <h3>Saved Credentials</h3>
-        <ul id="dataList" class="data-list"></ul>
-        <button id="clear-all-btn" class="btn btn-danger">Clear All Data</button>
-        <button id="admin-logout" class="btn btn-secondary" style="margin-top: 10px;">Logout</button>
+  <!-- ===================================================================== -->
+  <!-- VIEW 2: UNLOCKED WIFI CREDENTIAL VAULT                                -->
+  <!-- ===================================================================== -->
+  <main id="vaultView" class="hidden flex-grow max-w-7xl w-full mx-auto px-4 py-6 space-y-6">
+    
+    <!-- CREDENTIAL CARDS GRID -->
+    <section>
+      <div class="flex items-center justify-between mb-3">
+        <span class="text-xs font-bold uppercase tracking-wider text-neutral-400">
+          &gt; DECRYPTED_NODES (<span id="visibleCountLabel" class="text-crimson">0</span>)
+        </span>
+        <span class="text-[11px] text-neutral-600 hidden sm:inline">
+          AUTO-ENCRYPTED ON EVERY WRITE
+        </span>
+      </div>
+
+      <div id="credentialsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <!-- Cards dynamically injected via JS -->
+      </div>
+    </section>
+  </main>
+
+  <!-- TERMINAL FOOTER -->
+  <footer class="w-full border-t border-crimson-border bg-obsidian py-3 px-4 mt-8">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] text-neutral-500">
+      <div>
+        CRIMSON_VAULT // ZERO-TRUST CLIENT-SIDE WIFI STORAGE
+      </div>
+      <div>
+        ALL CREDENTIALS ENCRYPTED IN LOCALSTORAGE // NO EXTERNAL TELEMETRY
+      </div>
     </div>
+  </footer>
 
-    <script>
-        const loginForm = document.getElementById('loginForm');
-        const loginSection = document.getElementById('login-section');
-        const userSection = document.getElementById('user-section');
-        const adminSection = document.getElementById('admin-section');
-        const errorMsg = document.getElementById('error-msg');
-        
-        const userForm = document.getElementById('userForm');
-        const credentialsContainer = document.getElementById('credentialsContainer');
-        const addRowBtn = document.getElementById('addRowBtn');
-        const userMsg = document.getElementById('user-msg');
-        const dataList = document.getElementById('dataList');
+  <!-- ===================================================================== -->
+  <!-- APPLICATION LOGIC & WEB CRYPTO API AES-256-GCM IMPLEMENTATION         -->
+  <!-- ===================================================================== -->
+  <script>
+    /**
+     * Storage keys and default configuration
+     */
+    const STORAGE_KEY_VAULT = 'crimson_vault_encrypted_blob_v2';
+    const STORAGE_KEY_INIT  = 'crimson_vault_initialized_v2';
+    const DEFAULT_MASTER_PW = 'alohomora';
 
-        // PIN Configuration
-        const ADMIN_PIN = "080501";
-        const USER_PIN = "111111";
+    /**
+     * In-memory decrypted credential state
+     */
+    let decryptedCredentials = [];
+    let hiddenPasswordIds = new Set();
 
-        // Login Logic
-        loginForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const pin = document.getElementById('pin').value.trim();
+    /**
+     * Pre-populated Wi-Fi entries without extra notes
+     */
+    const SAMPLE_CREDENTIALS = [
+      {
+        id: 'node-' + Date.now() + '-1',
+        ssid: 'Arnab',
+        password: '11223344',
+        security: 'WPA2',
+        notes: '',
+        updatedAt: '2026-11-13'
+      },
+      {
+        id: 'node-' + Date.now() + '-2',
+        ssid: 'DEPIA.COM',
+        password: '12344323',
+        security: 'WPA2',
+        notes: '',
+        updatedAt: '2026-11-13'
+      }
+    ];
 
-            if (pin === ADMIN_PIN) {
-                errorMsg.textContent = "";
-                loginSection.classList.add('hidden');
-                adminSection.classList.remove('hidden');
-                loadAdminData();
-            } else if (pin === USER_PIN) {
-                errorMsg.textContent = "";
-                loginSection.classList.add('hidden');
-                userSection.classList.remove('hidden');
-            } else {
-                errorMsg.textContent = "Invalid PIN!";
-                errorMsg.className = "error";
-            }
-        });
+    /**
+     * Live UTC Clock in Lock Screen
+     */
+    function updateClock() {
+      const clockEl = document.getElementById('clockDisplay');
+      if (clockEl) {
+        const now = new Date();
+        clockEl.textContent = now.toISOString().substring(11, 19) + ' UTC';
+      }
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
 
-        // Add More Input Rows Dynamically
-        addRowBtn.addEventListener('click', function() {
-            const row = document.createElement('div');
-            row.className = 'credential-row';
-            row.innerHTML = `
-                <div class="input-group">
-                    <label>Gmail Address:</label>
-                    <input type="email" class="gmailInput" required placeholder="example@gmail.com">
-                </div>
-                <div class="input-group">
-                    <label>Gmail Password:</label>
-                    <input type="password" class="passwordInput" required placeholder="Enter password">
-                </div>
-                <button type="button" class="btn-remove" onclick="this.parentElement.remove()">Remove</button>
-                <div style="clear: both;"></div>
-            `;
-            credentialsContainer.appendChild(row);
-        });
+    /**
+     * Web Crypto API: Derive AES-GCM-256 key from master password + salt
+     */
+    async function deriveCryptoKey(password, saltUint8) {
+      const enc = new TextEncoder();
+      const keyMaterial = await window.crypto.subtle.importKey(
+        'raw',
+        enc.encode(password),
+        { name: 'PBKDF2' },
+        false,
+        ['deriveKey']
+      );
+      return window.crypto.subtle.deriveKey(
+        {
+          name: 'PBKDF2',
+          salt: saltUint8,
+          iterations: 100000,
+          hash: 'SHA-256'
+        },
+        keyMaterial,
+        { name: 'AES-GCM', length: 256 },
+        false,
+        ['encrypt', 'decrypt']
+      );
+    }
 
-        // User Bulk Credential Submission Logic
-        userForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const gmailInputs = document.querySelectorAll('.gmailInput');
-            const passwordInputs = document.querySelectorAll('.passwordInput');
+    /**
+     * Encrypt JSON data with AES-GCM and store Base64 payload in localStorage
+     */
+    async function encryptAndSaveVault(dataArray, password) {
+      try {
+        const enc = new TextEncoder();
+        const salt = window.crypto.getRandomValues(new Uint8Array(16));
+        const iv = window.crypto.getRandomValues(new Uint8Array(12));
+        const key = await deriveCryptoKey(password, salt);
 
-            let existingData = JSON.parse(localStorage.getItem('savedBulkCredentials')) || [];
-            let newEntriesCount = 0;
+        const plaintextBytes = enc.encode(JSON.stringify(dataArray));
+        const ciphertextBuffer = await window.crypto.subtle.encrypt(
+          { name: 'AES-GCM', iv: iv },
+          key,
+          plaintextBytes
+        );
 
-            for (let i = 0; i < gmailInputs.length; i++) {
-                const gmail = gmailInputs[i].value.trim();
-                const password = passwordInputs[i].value.trim();
-
-                if (gmail && password) {
-                    const newItem = {
-                        id: Date.now() + i,
-                        gmail: gmail,
-                        password: password,
-                        timestamp: new Date().toLocaleString()
-                    };
-                    existingData.push(newItem);
-                    newEntriesCount++;
-                }
-            }
-
-            if (newEntriesCount > 0) {
-                localStorage.setItem('savedBulkCredentials', JSON.stringify(existingData));
-                
-                // Reset form back to 1 empty row
-                credentialsContainer.innerHTML = `
-                    <div class="credential-row">
-                        <div class="input-group">
-                            <label>Gmail Address:</label>
-                            <input type="email" class="gmailInput" required placeholder="example@gmail.com">
-                        </div>
-                        <div class="input-group">
-                            <label>Gmail Password:</label>
-                            <input type="password" class="passwordInput" required placeholder="Enter password">
-                        </div>
-                    </div>
-                `;
-
-                userMsg.textContent = `${newEntriesCount} set(s) submitted successfully!`;
-                setTimeout(() => { userMsg.textContent = ""; }, 3000);
-            }
-        });
-
-        // Load Admin Data List & Edit Capability
-        function loadAdminData() {
-            dataList.innerHTML = "";
-            let storedData = JSON.parse(localStorage.getItem('savedBulkCredentials')) || [];
-
-            if (storedData.length === 0) {
-                dataList.innerHTML = '<li class="no-data">No credentials submitted yet.</li>';
-                return;
-            }
-
-            storedData.forEach(item => {
-                const li = document.createElement('li');
-                li.className = 'data-item';
-                li.innerHTML = `
-                    <div class="data-content">
-                        <div class="data-text"><strong>Gmail:</strong> ${escapeHtml(item.gmail)}</div>
-                        <div class="data-text"><strong>Password:</strong> ${escapeHtml(item.password)}</div>
-                        <div class="data-time">${item.timestamp}</div>
-                    </div>
-                    <div class="action-btns">
-                        <button class="btn-edit" onclick="editItem(${item.id})">Edit</button>
-                        <button class="delete-item-btn" onclick="deleteItem(${item.id})">Delete</button>
-                    </div>
-                `;
-                dataList.appendChild(li);
-            });
-        }
-
-        // Edit Credential Item Function
-        window.editItem = function(id) {
-            let storedData = JSON.parse(localStorage.getItem('savedBulkCredentials')) || [];
-            const item = storedData.find(d => d.id === id);
-            
-            if (item) {
-                const newGmail = prompt("Edit Gmail Address:", item.gmail);
-                if (newGmail !== null) {
-                    const newPassword = prompt("Edit Password:", item.password);
-                    if (newPassword !== null) {
-                        if (newGmail.trim() !== "" && newPassword.trim() !== "") {
-                            item.gmail = newGmail.trim();
-                            item.password = newPassword.trim();
-                            item.timestamp = "Edited: " + new Date().toLocaleString();
-                            localStorage.setItem('savedBulkCredentials', JSON.stringify(storedData));
-                            loadAdminData();
-                        } else {
-                            alert("Fields cannot be empty!");
-                        }
-                    }
-                }
-            }
+        const payload = {
+          salt: bufferToBase64(salt),
+          iv: bufferToBase64(iv),
+          ciphertext: bufferToBase64(new Uint8Array(ciphertextBuffer))
         };
 
-        // Delete Single Item
-        window.deleteItem = function(id) {
-            let storedData = JSON.parse(localStorage.getItem('savedBulkCredentials')) || [];
-            storedData = storedData.filter(item => item.id !== id);
-            localStorage.setItem('savedBulkCredentials', JSON.stringify(storedData));
-            loadAdminData();
-        };
+        localStorage.setItem(STORAGE_KEY_VAULT, JSON.stringify(payload));
+        localStorage.setItem(STORAGE_KEY_INIT, 'true');
+        return true;
+      } catch (err) {
+        console.error('Encryption failed:', err);
+        showToast('ENCRYPTION ENGINE ERROR', 'error');
+        return false;
+      }
+    }
 
-        // Clear All Data Logic
-        document.getElementById('clear-all-btn').addEventListener('click', function() {
-            if (confirm("Are you sure you want to delete all stored credentials?")) {
-                localStorage.removeItem('savedBulkCredentials');
-                loadAdminData();
-            }
-        });
+    /**
+     * Decrypt vault from localStorage using provided master password
+     */
+    async function decryptVaultFromStorage(password) {
+      const rawBlob = localStorage.getItem(STORAGE_KEY_VAULT);
+      if (!rawBlob) return null;
 
-        // Logout Event Listeners
-        document.getElementById('user-logout').addEventListener('click', logout);
-        document.getElementById('admin-logout').addEventListener('click', logout);
+      try {
+        const payload = JSON.parse(rawBlob);
+        const salt = base64ToBuffer(payload.salt);
+        const iv = base64ToBuffer(payload.iv);
+        const ciphertext = base64ToBuffer(payload.ciphertext);
 
-        function logout() {
-            userSection.classList.add('hidden');
-            adminSection.classList.add('hidden');
-            loginSection.classList.remove('hidden');
-            loginForm.reset();
-        }
+        const key = await deriveCryptoKey(password, salt);
+        const decryptedBuffer = await window.crypto.subtle.decrypt(
+          { name: 'AES-GCM', iv: iv },
+          key,
+          ciphertext
+        );
 
-        // Helper Function to Prevent HTML Injection
-        function escapeHtml(str) {
-            return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
-        }
-    </script>
+        const dec = new TextDecoder();
+        return JSON.parse(dec.decode(decryptedBuffer));
+      } catch (err) {
+        // Throws DOMException if password/authentication tag is invalid
+        return null;
+      }
+    }
+
+    /**
+     * Base64 ArrayBuffer Helpers
+     */
+    function bufferToBase64(uint8Array) {
+      let binary = '';
+      for (let i = 0; i < uint8Array.byteLength; i++) {
+        binary += String.fromCharCode(uint8Array[i]);
+      }
+      return window.btoa(binary);
+    }
+
+    function base64ToBuffer(base64) {
+      const binary = window.atob(base64);
+      const bytes = new Uint8Array(binary.length);
+      for (let i = 0; i < binary.length; i++) {
+        bytes[i] = binary.charCodeAt(i);
+      }
+      return bytes;
+    }
+
+    /**
+     * Initialize Vault on First Visit with Default Password ("alohomora") & Sample Data
+     */
+    async function ensureVaultInitialized() {
+      const isInit = localStorage.getItem(STORAGE_KEY_INIT);
+      const existingBlob = localStorage.getItem(STORAGE_KEY_VAULT);
+      if (!isInit || !existingBlob) {
+        await encryptAndSaveVault(SAMPLE_CREDENTIALS, DEFAULT_MASTER_PW);
+      }
+    }
+
+    // Run initialization immediately
+    ensureVaultInitialized();
+
+    /**
+     * Handle Unlock Form Submission
+     */
+    async function handleUnlock(event) {
+      event.preventDefault();
+      const inputEl = document.getElementById('masterPasswordInput');
+      const errorEl = document.getElementById('lockErrorMsg');
+      const lockBox = document.getElementById('lockBox');
+      const candidatePassword = inputEl.value;
+
+      await ensureVaultInitialized();
+
+      const result = await decryptVaultFromStorage(candidatePassword);
+      if (result !== null && Array.isArray(result)) {
+        // Access Granted
+        decryptedCredentials = result;
+        hiddenPasswordIds = new Set(
+          decryptedCredentials
+            .filter(item => item.password && item.password.length > 0)
+            .map(item => String(item.id ?? item.ssid ?? ''))
+        );
+
+        inputEl.value = '';
+        errorEl.classList.add('hidden');
+
+        // Switch UI Views
+        document.getElementById('lockScreenView').classList.add('hidden');
+        document.getElementById('vaultView').classList.remove('hidden');
+        renderCredentials();
+        showToast('VAULT DECRYPTED // ACCESS GRANTED', 'success');
+      } else {
+        // Access Denied
+        errorEl.classList.remove('hidden');
+        lockBox.classList.remove('shake-error');
+        void lockBox.offsetWidth; // trigger reflow
+        lockBox.classList.add('shake-error');
+        inputEl.focus();
+        inputEl.select();
+      }
+    }
+
+    /**
+     * Render Credential Cards & Metrics
+     */
+    function renderCredentials() {
+      const grid = document.getElementById('credentialsGrid');
+
+      document.getElementById('visibleCountLabel').textContent = decryptedCredentials.length;
+
+      grid.innerHTML = decryptedCredentials.map(item => {
+        const hasPassword = item.password && item.password.length > 0;
+        const credentialId = String(item.id ?? item.ssid ?? '');
+        const isPasswordHidden = hiddenPasswordIds.has(credentialId);
+        const displayPassword = !hasPassword
+          ? '<span class="text-neutral-600 italic">[NO_KEY_REQUIRED]</span>'
+          : isPasswordHidden
+            ? '<span class="text-crimson tracking-widest select-none">••••••••••••</span>'
+            : `<span class="text-white select-all break-all">${escapeHtml(item.password)}</span>`;
+        const visibilityIcon = isPasswordHidden
+          ? `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>`
+          : `<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="square" stroke-linejoin="miter" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"></path></svg>`;
+
+        return `
+          <article class="border border-crimson-border hover:border-crimson bg-obsidian p-4 flex flex-col justify-between transition-colors relative group">
+            <!-- Top Row: SSID -->
+            <div>
+              <div class="border-b border-crimson-border/75 pb-3 mb-3">
+                <div class="text-[10px] text-neutral-500 uppercase tracking-wider">SSID // ACCESS POINT</div>
+                <h3 class="text-base font-extrabold text-white truncate mt-0.5" title="${escapeHtml(item.ssid)}">
+                  ${escapeHtml(item.ssid)}
+                </h3>
+              </div>
+
+              <!-- Password Display Box -->
+              <div class="mb-3">
+                <div class="text-[10px] text-neutral-500 uppercase mb-1 flex items-center justify-between">
+                  <span>PASSPHRASE</span>
+                  ${hasPassword ? `
+                    <button type="button" onclick="togglePasswordVisibility(this)" data-credential-id="${escapeHtml(credentialId)}" title="${isPasswordHidden ? 'Show password' : 'Hide password'}" aria-label="${isPasswordHidden ? 'Show password' : 'Hide password'}" class="text-neutral-400 hover:text-crimson shrink-0 cursor-pointer p-1">
+                      ${visibilityIcon}
+                    </button>
+                  ` : ''}
+                </div>
+                <div class="bg-void border border-crimson-border px-3 py-2 text-xs sm:text-sm min-h-[38px] flex items-center justify-between gap-2">
+                  <div class="overflow-hidden">${displayPassword}</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Action Footer -->
+            <div class="pt-3 border-t border-crimson-border/60 flex items-center justify-between gap-2">
+              <button
+                type="button"
+                onclick="copyPasswordToClipboard(this)"
+                data-credential-id="${escapeHtml(credentialId)}"
+                ${!hasPassword ? 'disabled' : ''}
+                class="w-full py-1.5 px-3 text-xs font-bold uppercase tracking-wider border border-crimson bg-crimson-dark/30 text-crimson hover:bg-crimson hover:text-void disabled:opacity-40 disabled:pointer-events-none transition-colors cursor-pointer text-center"
+              >
+                COPY PASSWORD
+              </button>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    /**
+     * Copy an unlocked credential password to the clipboard
+     */
+    function copyPasswordToClipboard(buttonEl) {
+      const credentialId = buttonEl.dataset.credentialId;
+      const entry = decryptedCredentials.find(item => String(item.id ?? item.ssid ?? '') === credentialId);
+      if (!entry || !entry.password) return;
+
+      const tempInput = document.createElement('textarea');
+      tempInput.value = entry.password;
+      tempInput.style.position = 'fixed';
+      tempInput.style.opacity = '0';
+      document.body.appendChild(tempInput);
+      tempInput.focus();
+      tempInput.select();
+
+      try {
+        const copied = document.execCommand('copy');
+        if (!copied) throw new Error('Clipboard copy failed');
+        const originalText = buttonEl.textContent;
+        buttonEl.textContent = 'COPIED TO CLIPBOARD';
+        buttonEl.classList.remove('bg-crimson-dark/30', 'text-crimson');
+        buttonEl.classList.add('bg-crimson', 'text-void');
+        showToast(`COPIED KEY FOR "${entry.ssid}"`, 'success');
+
+        setTimeout(() => {
+          buttonEl.textContent = originalText;
+          buttonEl.classList.add('bg-crimson-dark/30', 'text-crimson');
+          buttonEl.classList.remove('bg-crimson', 'text-void');
+        }, 1800);
+      } catch (err) {
+        showToast('CLIPBOARD ACCESS BLOCKED', 'error');
+      } finally {
+        document.body.removeChild(tempInput);
+      }
+    }
+
+    /**
+     * Toggle visibility of an unlocked credential password
+     */
+    function togglePasswordVisibility(buttonEl) {
+      const credentialId = buttonEl.dataset.credentialId;
+      if (hiddenPasswordIds.has(credentialId)) {
+        hiddenPasswordIds.delete(credentialId);
+      } else {
+        hiddenPasswordIds.add(credentialId);
+      }
+      renderCredentials();
+    }
+
+    /**
+     * Tactical Toast Notification Helper
+     */
+    function showToast(message, type = 'info') {
+      const container = document.getElementById('toastContainer');
+      const toast = document.createElement('div');
+
+      let borderClass = 'border-crimson text-white bg-obsidian';
+      let prefix = '[SYS]';
+      if (type === 'success') {
+        borderClass = 'border-crimson text-crimson bg-obsidian';
+        prefix = '[OK]';
+      } else if (type === 'error') {
+        borderClass = 'border-crimson text-void bg-crimson font-extrabold';
+        prefix = '[ERR]';
+      }
+
+      toast.className = `border ${borderClass} px-3.5 py-2.5 text-xs tracking-wider uppercase flex items-center justify-between gap-3 pointer-events-auto transition-opacity duration-300`;
+      toast.innerHTML = `<span><strong>${prefix}</strong> ${escapeHtml(message)}</span>`;
+
+      container.appendChild(toast);
+
+      setTimeout(() => {
+        toast.style.opacity = '0';
+        setTimeout(() => toast.remove(), 300);
+      }, 2800);
+    }
+
+    /**
+     * XSS Protection Helper
+     */
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+  </script>
 </body>
 </html>
